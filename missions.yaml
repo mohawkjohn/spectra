@@ -1,0 +1,1016 @@
+---
+:missions:
+  - :abbrev: 'MRO'
+    :name: 'Mars Reconaissance Orbiter'
+    :agency: 'NASA'
+    :destinations:
+      - 'Mars'
+      - 'Phobos'
+      - 'Deimos'
+    :sensors:
+      - :abbrev: 'CRISM VNIR'
+        :detector: 'silicon photodiodes, 640 spatial x 480 spectral'
+        cooling: active # three RICOR K508 Integral Sterling cryocoolers
+        :name: 'Compact Reconaissance Imaging Spectrometer for Mars, Visible-Near Infrared'
+        :cite: 'Murchie et al., 2007'
+        :spectra:
+          - :low: 362
+            :high: 2720
+            :resolution: 6.55 # nm # sampling
+      - :abbrev: 'CRISM IR'
+        :detector: 'HgCdTe, 640 spatial x 480 spectral'
+        cooling: 'active' # three RICOR K508 Integral Sterling cryocoolers
+        :name: 'Compact Reconaissance Imaging Spectrometer for Mars, Infrared'
+        :cite: 'Murchie et al., 2007'
+        :spectra:
+          - :low: 2760
+            :high: 3920
+            :resolution: 6.55 # nm # sampling
+      - :abbrev: 'MCS'
+        :name: 'Mars Climate Sounder'
+        :cite: 'McCleese et al., 2007'
+        cooling: 'none'
+        :detector: 'nine 21-element linear thermopile arrays'
+        :spectra: # This one was SO damn annoying. Everything was in inverse cm instead of wavelengths.
+          - :peak: 16500   # temperature 20-40km
+            :low: 16300
+            :high: 16800
+          - :peak: 15900   # temperature 40-80km and pressure
+            :low: 15500
+            :high: 16300
+          - :peak: 15400   # temperature 40-80km and pressure
+            :low: 15000
+            :high: 15700
+          - :low: 11500    # dust and condensate extinction 0-80km
+            :high: 12200
+            :peak: 11800
+          - :low: 20000    # temperature 0-20km, D&C extinction 0-80km
+            :high: 25000
+            :peak: 22200
+          - :low: 300      # polar radiative balance
+            :high: 3000
+            :peak: 1650
+          - :peak: 31700   # temperature 0-20km and D&C extinction 0-80km
+            :low: 29400
+            :high: 34500
+          - :peak: 41700   # water vapor 0-40km and D&C extinction 0-80km
+            :low: 38500
+            :high: 45500
+          - :peak: 42100   # water vapor 0-40km and D&C extinction 0-80km
+            :high: 43500
+            :low: 40800
+  - :name: 'Mars Express'
+    :agency: 'ESA'
+    :destinations:
+      - 'Mars'
+      - 'Phobos'
+      - 'Deimos'
+    :cite: 'Bibring et al., 2004'
+    :sensors:
+      - :abbrev: 'OMEGA VNIR'
+        :name: 'Observatoire Mineralogie, Eau, Glaces, Activite: VNIR'
+        :snr: '>100'
+        :detector: 'CCD (Thomson 7863), 384 spatial by 288 spectral (pushbroom)'
+        :spectra: # note: spectral :resolution: can be traded for spatial :resolution:
+          - :low: 380
+            :high: 1050
+            :resolution: 7
+      - :abbrev: 'OMEGA SWIR'
+        :name: 'Observatoire Mineralogie, Eau, Glaces, Activite: SWIR'
+        :detector: 'InSb, 128 spectels, 2x (whiskbroom 16-128px)'
+        :snr: '>100'
+        :spectra:
+          - :low: 930
+            :high: 2730
+            :resolution: 13
+          - :low: 2550
+            :high: 5100
+            :resolution: 20
+  - :name: 'Chandrayaan-1'
+    :agency: 'ISRO'
+    :destinations:
+      - 'Luna'
+    :cite: 'Pieters et al., 2009'
+    :sensors:
+      - :abbrev: 'HySI'
+        :name: 'Hyper Spectral Imager'
+      - :abbrev: 'M3'
+        :name: 'Moon Mineralogy Mapper'
+        :spectra:
+          - :low: 405 # channels below 434 may be below required SNR
+            :high: 3000
+            :resolution: 10
+  - :abbrev: 'AVIRIS' # aboard U-2 and ER-2
+    :name: 'Airborne Visible/Infrared Imaging Spectrometer'
+    :destinations:
+      - 'Earth'
+    :cite: 'Vane et al., 1993'
+    :sensors:
+      - :abbrev: 'AVIRIS'
+        :name: 'Airborne Visible/Infrared Imaging Spectrometer'
+        :spectra: # These are not fully spec'd in the citation above, and have overlap.
+          - :low: 400
+            :high: 700
+            :resolution: 10
+          - :low: 680
+            :high: 1300
+            :resolution: 10
+          - :low: 1240
+            :high: 1880
+            :resolution: 10
+          - :low: 1850
+            :high: 2500
+            :resolution: 10
+  - :name: 'Mercury MESSENGER'
+    :abbrev: 'MESSENGER'
+    :cite: 'Hawkins et al., 2006'
+    :destinations:
+      - 'Mercury'
+    :sensors:
+      - :name: 'Mercury Dual Imaging Sensor Narrow Angle Camera'
+        :abbrev: 'MDIS NAC'
+        :spectra:
+          - :peak: 750
+            :low: 700
+            :high: 800
+            :resolution: 100
+      - :name: 'Mercury Dual Imaging Sensor Wide Angle Camera'
+        :abbrev: 'MDIS WAC'
+        :spectra: # also a filter at 700nm with 600nm bandwidth for navigation?
+          - :peak: 430
+            :resolution: 18
+          - :peak: 480.4
+            :resolution: 8.9
+          - :peak: 559.2
+            :resolution: 4.6
+          - :peak: 628.7
+            :resolution: 4.4
+          - :peak: 698.8
+            :resolution: 4.4
+          - :peak: 749.0
+            :resolution: 4.5
+          - :peak: 828.6
+            :resolution: 4.1
+          - :peak: 898.1
+            :resolution: 4.3
+          - :peak: 948.0
+            :resolution: 4.9
+          - :peak: 996.8
+            :resolution: 12.0
+          - :peak: 1010
+            :resolution: 20
+  - :name: 'New Horizons'
+    :cite: 'Reuter et al., 2008'
+    :destinations:
+      - 'Pluto'
+      - 'Charon'
+      - 'Nix'
+      - 'Hydra'
+      - 'Kuiper Belt'
+    :sensors:
+      - :name: 'Ralph Multi-spectral Visible Imaging Camera'
+        :abbrev: 'MVIC'
+        :spectra:
+          - :low: 400
+            :high: 975
+            :resolution: 575
+          - :low: 400
+            :high: 550
+            :resolution: 150
+          - :low: 540
+            :high: 700
+            :resolution: 160
+          - :low: 780
+            :high: 975
+            :resolution: 195
+      - :name: 'Ralph Linear Etalon Imaging Spectral Array'
+        :abbrev: 'LEISA' # HgCdTe detector # frosts of methane, nitrogen, carbon monoxide, water
+        :spectra:
+          - :low: 1250 # map surface composition of Pluto/Charon
+            :high: 2100
+            :resolution: 10 # 5 for the lowest, 10 for the highest (lambda/delta lambda >= 250)
+          - :low: 2100 # map Pluto's surface temperature
+            :high: 2250
+            :resolution: 4.1 # 3.8 for the lowest, I think
+  - :name: 'Hayabusa 2 Mobile Asteroid Surface Scout'
+    :abbrev: 'MASCOT'
+    :cite: 'Jaumann et al., 2014'
+    :destinations:
+      - '(25143) Itokawa'
+    :sensors:
+      - :name: 'multispectral radiometer'
+        :spectra:
+          - :low: 5500
+            :high: 7000
+          - :low: 8000
+            :high: 9500
+          - :low: 9500
+            :high: 11500
+          - :low: 13500
+            :high: 15500
+          - :low: 8000
+            :high: 14000
+          - :low: 5000
+            :high: 100000
+  - :name: 'Hayabusa (MUSES-C)'
+    :cite: 'Kitazato et al., 2008'
+    :destinations:
+      - '(25143) Itokawa'
+    :sensors:
+      - :name: 'Near-Infrared Spectrometer'
+        :abbrev: 'NIRS'
+        :spectra: # InGaAs, 64-channel
+          - :low: 750
+            :high: 2250
+            :resolution: 24
+  - :name: 'Dawn'
+    :cite: 'Sierks et al., 2011' # Rayman et al., 2006
+    :destinations:
+      - '(4) Vesta'
+      - '(1) Ceres'
+    :sensors:
+      - :name: 'framing camera'
+        :abbrev: 'FC'
+        :spectra:
+          - :low: 450
+            :high: 920
+          - :peak: 430
+            :resolution: 40
+          - :peak: 550
+            :resolution: 40
+          - :peak: 650
+            :resolution: 40
+          - :peak: 750
+            :resolution: 40
+          - :peak: 830
+            :resolution: 40
+          - :peak: 920
+            :resolution: 40
+          - :peak: 980
+            :resolution: 80
+  - :name: 'Landsat 1-3'
+    :cite: 'Loveland et al., 2012'
+    :sensors:
+      - :name: 'Return Beam Vidicon'
+        :detector: 'vidicon'
+        :abbrev: 'RBV'
+        :spectra:
+          - :low: 475  # visible blue-green
+            :high: 575
+          - :low: 580  # visible orange-red
+            :high: 680
+          - :low: 690  # visible red to near-infrared
+            :high: 830
+      - :name: 'Multispectral Scanner'
+        :abbrev: 'MSS'
+        :spectra:
+          - :low: 500   # visible green
+            :high: 600
+          - :low: 600   # visible red
+            :high: 700
+          - :low: 700   # near infrared
+            :high: 800
+          - :low: 800   # near infrared
+            :high: 1100
+          - :low: 10400 # thermal
+            :high: 12600
+  - :name: 'Landsat 4-5'
+    :cite: 'Loveland et al., 2012'
+    :sensors:
+      - :name: 'Multispectral Scanner'
+        :abbrev: 'MSS'
+        :spectra:
+          - :low: 500   # visible green
+            :high: 600
+          - :low: 600   # visible red
+            :high: 700
+          - :low: 700   # near infrared
+            :high: 800
+          - :low: 800   # near infrared
+            :high: 1100
+          - :low: 10400 # thermal
+            :high: 12600
+  - :name: 'Landsat 7'
+    :cite: 'Loveland et al., 2012'
+    :sensors:
+      - :name: 'Enhanced Thematic Mapper Plus'
+        :abbrev: 'ETM+'
+        :spectra:
+          - :low: 450    # visible blue
+            :high: 520
+          - :low: 520    # visible green
+            :high: 600
+          - :low: 630    # visible red
+            :high: 690
+          - :low: 770    # near-infrared
+            :high: 900
+          - :low: 1550   # mid-infrared
+            :high: 1750
+          - :low: 10400  # thermal
+            :high: 12500
+          - :low: 2080   # mid-infrared
+            :high: 2350
+          - :low: 520    # panchromatic
+            :high: 900
+  - :name: 'Landsat 8'
+    :cite: 'Loveland et al., 2012'
+    :sensors:
+      - :name: 'Operational Land Imager'
+        :abbrev: 'OLI'
+        :spectra:
+          - :low: 430    # visible ultra blue
+            :high: 450
+          - :low: 450    # visible blue
+            :high: 520
+          - :low: 530    # visible green
+            :high: 600
+          - :low: 630    # visible red
+            :high: 680
+          - :low: 850    # near-infrared
+            :high: 890
+          - :low: 1560   # mid-infrared
+            :high: 1660
+          - :low: 2100   # mid-infrared
+            :high: 2300
+          - :low: 1360   # mid-infrared "cirrus"
+            :high: 1390
+          - :low: 500    # panchromatic
+            :high: 680
+      - :name: 'Thermal Infrared Sensor'
+        :abbrev: 'TIRS'
+        :spectra:
+          - :low: 10300
+            :high: 11300
+          - :low: 11500
+            :high: 12500
+  - :name: 'Lunar Crater Observation and Sensing Satellite'
+    :abbrev: 'LCROSS'
+    :cite: 'Ennico et al., 2010'
+    :destinations:
+      - 'Luna'
+    :sensors:
+      - :name: 'Visible Camera'
+        :abbrev: 'VIS'
+        :spectra:
+          - color: red
+          - color: green
+          - color: blue
+      - :name: 'Near-Infrared Cameras'
+        :abbrev: 'NIR1/NIR2'
+        :spectra:
+          - :low: 900     # NIR1 and NIR2
+            :high: 1700
+          - :low: 1400    # long-pass filter (NIR1 only)
+            :high: 1700
+      - :name: 'Mid-Infrared Camera 1' # Vanadium oxide microbolometer MIRIC TB2-30
+        :abbrev: 'MIR1'
+        :spectra:
+          - :low: 6000    # unfiltered
+            :high: 13500
+          - :low: 6000    # filter
+            :high: 10000
+      - :name: 'Mid-Infrared Camera 2' # ThermoVision Micron from Flir Systems/Indigo Operations
+        :abbrev: 'MIR2'
+        :spectra:
+          - :low: 6000   # unfiltered
+            :high: 13500
+      - :name: 'Total Luminance Photometer'
+        :abbrev: 'TLP'
+        :spectra:
+          - :low: 400
+            :high: 1000
+      - :name: 'Visible Spectrometer'
+        :abbrev: 'VSP'
+        :spectra:
+          - :peak: 300 # R~300
+          - :peak: 400 # R~500
+          - :peak: 600 # R~850
+      - :name: 'Near-Infrared Spectrometer 1' # Polychromix
+        :abbrev: 'NSP1'
+        :spectra: # InGaAs
+          - :low: 1200
+            :high: 2450
+            :resolution: 34 # less than 34 (as low as 19)
+      - :name: 'Near-Infrared Spectrometer 2' # Polychromix
+        :abbrev: 'NSP2'
+        :spectra:
+          - :low: 1200
+            :high: 2450
+            :resolution: 35 # as low as 16
+  - :name: 'Viking'
+    :destinations:
+      - 'Mars'
+    :cite: 'Chase et al., 1978'
+    :sensors:
+      - :name: 'Infrared Thermal Mapper'
+        :abbrev: 'IRTM'
+        :spectra:
+          - :low: 6100
+            :peak: 7000
+            :high: 8300
+          - :peak: 9000
+            :low: 8300
+            :high: 9800
+          - :peak: 11000
+            :low: 9800
+            :high: 12500
+          - :low: 14560
+            :high: 15410
+            :peak: 15000 # 15um CO2 absorption feature
+          - :peak: 20000 # surface temperatures
+            :low: 17700
+            :high: 24000
+  - :name: 'Vega-IKS'
+    :cite: 'Combes et al., 1988'
+    :destinations:
+      - "Halley's Comet"
+    :sensors:
+      - :name: 'Long-wavelength spectroscopic channel'
+        :abbrev: 'LSC'
+        :spectra:
+          - :low: 6000
+            :high: 12000
+            :resolution: 160
+      - :name: 'Short-wavelength spectroscopic channel'
+        :abbrev: 'SSC'
+        :spectra:
+          - :low: 2400
+            :high: 4900
+            :resolution: 70
+  - :name: 'Mars Odyssey'
+    :cite: 'Christensen 2002'
+    :destinations:
+      - Mars
+    :sensors:
+      - :name: 'Thermal Emission Imaging System Infrared'
+        :abbrev: 'THEMIS IR'
+        :spectra:
+          - :low: 6270 # 1 and 2
+            :high: 7280
+            :peak: 6780
+          - :low: 7380
+            :high: 8470
+            :peak: 7930
+          - :low: 7980
+            :high: 9140
+            :peak: 8560
+          - :low: 8750
+            :high: 9950
+            :peak: 9350
+          - :low: 9660
+            :high: 10760
+            :peak: 10210
+          - :low: 10450
+            :high: 11640
+            :peak: 11040
+          - :low: 11260
+            :high: 12330
+            :peak: 11790
+          - :low: 12170
+            :high: 12980
+            :peak: 12570
+          - :low: 14450
+            :high: 15320
+            :peak: 14880
+      - :name: 'Thermal Emission Imaging System Visible Band'
+        :abbrev: 'THEMIS V'
+        :spectra:
+          - :low: 400  # blue
+            :high: 449
+            :peak: 425
+          - :low: 515  # green
+            :high: 566
+            :peak: 540
+          - :low: 628  # red
+            :high: 686
+            :peak: 654
+          - :low: 723  # IR1
+            :high: 776
+            :peak: 749
+          - :low: 837  # IR2
+            :high: 882
+            :peak: 860
+  - :name: 'Rosetta Orbiter, Venus Express'
+    :cite: 'Coradini et al., 2007'
+    :destinations:
+      - 'Earth'
+      - 'Mars'
+      - "(2867) Šteins"
+      - '(21) Lutetia'
+      - '67P/Churyumov-Gerasimenko'
+    :sensors:
+      - :name: 'Visual IR Thermal Imaging Spectrometer'
+        :abbrev: 'VIRTIS-M'
+        :spectra:
+          - :low: 220.1   # Virtis-M Visible
+            :high: 1046.1
+            :resolution: 100
+          - :low: 952.8
+            :high: 5059.2
+            :resolution: 100
+      - :name: 'Optical, Spectroscopic, and Infrared Remote Imaging System WAC'
+        :abbrev: 'OSIRIS WAC'
+        :spectra:
+          - :peak: 245 # UV: continuum; backup surface spectral reflectance
+            :resolution: 15
+          - :peak: 257 # CS gas emission
+            :resolution: 4
+          - :peak: 295 # continuum for OH
+            :resolution: 10
+          - :peak: 308 # Detection of OH emission from the vicinity of the nucleus
+            :resolution: 4
+          - :peak: 325 # Continuum for OH; backup surface spectral reflectance
+            :resolution: 10
+          - :peak: 336 # NH gas emission
+            :resolution: 4
+          - :peak: 375 # continuum for CN; backup surface spectral reflectance
+            :resolution: 10
+          - :peak: 388 # CN gas emission
+            :resolution: 4
+          - :peak: 630 # OI: O (1D) gas emission for dissociation of H2O
+            :resolution: 4
+          - :peak: 655 # VIS655: Continuum for NH2; backup surface spectral reflectance
+            :resolution: 10
+          - :peak: 670 # NH2 gas emission
+            :resolution: 4
+          - :peak: 750 # asteroid direction broad-band R filter in case of NAC failure
+            :resolution: 200
+          - :peak: 855
+            :resolution: 10 # backup surface spectral reflectance
+      - :name: "Optical, Spectroscopic, and Infrared Remote Imaging System NAC"
+        :abbrev: 'OSIRIS NAC'
+        :spectra:
+          - :peak: 359 # near-UV
+            :resolution: 60
+          - :peak: 480 # blue
+            :resolution: 80
+          - :peak: 550 # green
+            :resolution: 57
+          - :peak: 645 # orange
+            :resolution: 94
+          - :peak: 700 # hydration band
+            :resolution: 20
+          - :peak: 740 # red (surface spectral reflectance)
+            :resolution: 60
+          - :peak: 780 # orthopyroxene
+            :resolution: 20
+          - :peak: 840 # near IR: surface spectral reflectance
+            :resolution: 90
+          - :peak: 890
+            :resolution: 20
+  - :name: 'Deep Space 1'
+    :abbrev: 'DS1'
+    :cite: "Rodgers et al., 2007"
+    :destinations:
+      - "Borrelly"
+    :sensors:
+      - :name: 'Miniature Integrated Camera and Spectrometer'
+        :abbrev: 'MICAS'
+        :spectra:
+          - :low: 80
+            :high: 185
+            :resolution: 2.1
+            interval: 0.64 # nm (what is this?)
+          - :low: 500 # APS Imager and VISCCD
+            :high: 1000
+          - :low: 1200 # SWIR image spectrometer
+            :high: 2400
+            :resolution: 12
+            interval: 6.6
+  - :name: 'Cassini/Huygens'
+    :cite: 'Brown et al., 2004'
+    :destinations:
+      - 'Venus' # VIMS-IR was not operational at Venus, sadly
+      - 'Galilean satellites' # see Brown et al., 2003
+      - 'Jupiter'
+      - 'Titan'
+      - 'Iapetus'
+      - 'Hyperion'
+      - 'Phoebe'
+      - 'Titan'
+      - 'Europa'
+      - 'Ganymede'
+      - 'Castillo'
+      - 'Saturn'
+    :sensors:
+      - :name: 'Visual and Infrared Mapping Spectrometer, Visible' # Seems that it has to be kept pretty cold?
+        :abbrev: 'VIMS-V' # push-broom, using spacecraft drift or scanning of telescope secondary mirror
+        :spectra:
+          - :low: 300    # visual
+            :high: 1050
+            :resolution: 7.33 # a couple different numbers here. it says to see Capaccioni et al., 1998
+      - :name: 'Visual and Infrared Mapping Spectrometer, Infrared'
+        :abbrev: 'VIMS-IR' # linear array detector; whiskbroom via scanning telescope secondary mirror
+        :spectra: # FOV is wavelength dependent, as a result.
+          - :low: 850
+            :high: 5100
+            :resolution: 16.6
+      - :abbrev: 'CIRS: Far-IR'
+        :name: 'Composite Infrared Spectrometer: Far-IR'
+        :detector: 'Thermopile, 2 pixels'
+        :spectra:
+          - :low: 17000 # 600/cm
+            :high: 1000000  # 10/cm
+            :inverse-low: 600
+            :inverse-high: 10
+            :inverse-resolution: [0.5, 15.5]
+            #:resolution: [400, 47000] # 0.5-15.5/cm
+      - :abbrev: 'CIRS: Mid-IR 1'
+        :name: 'Composite Infrared Spectrometer: Mid-IR 1'
+        :detector: 'PV HgCdTe, 1x10'
+        :spectra:
+          - :low: 7000 # 1400/cm
+            :inverse-low: 1400
+            :high: 9100 # 1100/cm
+            :inverse-high: 1100
+            :inverse-resolution: [0.53, 15.5] # 0.5-15.5/cm
+      - :abbrev: 'CIRS: Mid-IR 2'
+        :name: 'Composite Infrared Spectrometer: Mid-IR 2'
+        :detector: 'PC HgCdTe, 1x10'
+        :spectra:
+          - :low: 9100  # 1100/cm
+            :inverse-low: 1100
+            :high: 17000 # 600/cm
+            :inverse-high: 600
+            :inverse-resolution: [0.5, 0.53] # 0.5-15.5/cm
+      - :name: 'Imaging Science Subsystem NAC'
+        :detector: 'CCD 1024x1024# three-phase, front-side illuminated'
+        :abbrev: 'ISS NAC'
+        :cite: 'Porco et al., 2004' # Note: Had to extract bandpasses from the plot manually
+        :spectra: # 12 x 2 filter wheels # bandpass types are given in the paper for each filter but not described, thus don't know :resolution:
+          - :peak: 264 # aerosols    # 258W
+            :low:  240
+            :high: 279
+          - :peak: 306 # aerosols, broad-band color
+            :low:  275
+            :high: 333
+          - :peak: 343 # aerosols, broad-band color, polarization
+            :low:  305
+            :high: 375
+          - :peak: 441 # medium-band color, polarization
+            :low:  427
+            :high: 457
+          - :peak: 455 # broad-band color (BLUE)
+            :low:  399
+            :high: 501
+          - :peak: 569 # broad-band color (GREEN)
+            :low:  499
+            :high: 630
+          - :peak: 619 # methane band, vertical sounding; two-lobed contiuum for MT1
+            :low:  617
+            :high: 627
+          - :peak: 603 # CB1 lobe 1
+            :low:  597
+            :high: 609
+          - :peak: 635 # CB1 lobe 2
+            :low:  629
+            :high: 641
+          - :peak: 649 # broad-band color (RED)
+            :low:  576
+            :high: 728
+          - :peak: 656 # H-alpha/lightning
+            :low:  651
+            :high: 661
+          - :peak: 727 # methane band, vertical sounding
+            :low:  725
+            :high: 730
+          - :peak: 750 # continuum for MT2 (750N)
+            :low:  746
+            :high: 757
+          - :peak: 752 # broad-band color  (752W)
+            :low:  681
+            :high: 843
+          - :peak: 861 # broad-band color, ring absorption band
+            :low:  814
+            :high: 927
+          - :peak: 889 # methane band, vertical sounding
+            :low:  884
+            :high: 895
+          - :peak: 938 # continuum for MT3; see through Titan haze
+            :low:  933
+            :high: 943
+          - :peak: 928 # broad-band color
+            :low:  881
+            :high: 982 # (?) Not actually displayed, oddly
+          - :peak: 1001 # broad-band color
+            :low:  980
+            :high: 1030
+      - :name: 'Imaging Science Subsystem WAC'
+        :abbrev: 'ISS WAC'
+        :cite: 'Porco et al., 2004'
+        :spectra: # 9 x 2 filter wheels
+          - :peak: 420 # broad-band color
+            :low:  415
+            :high: 434
+          - :peak: 463 # broad-band color
+            :low:  433
+            :high: 500
+          - :peak: 568 # broad-band color
+            :low:  503
+            :high: 627
+          - :peak: 647 # broad-band color
+            :low:  576
+            :high: 728
+          - :peak: 656 # H-alpha/lightning
+            :low:  651
+            :high: 661
+          - :peak: 728 # Methane band, vertical sounding
+            :low:  726
+            :high: 731
+          - :peak: 752 # Continuum for MT2
+            :low:  747
+            :high: 758
+          - :peak: 740 # Broad-band color
+            :low:  680
+            :high: 842
+          - :peak: 852 # Broad-band color, ring absorption band
+            :low:  816
+            :high: 927
+          - :peak: 890 # Methane band, vertical sounding
+            :low:  858
+            :high: 898
+          - :peak: 939 # Continuum for MT3, see through Titan haze
+            :low:  934
+            :high: 944
+          - :peak: 917 # Broad-band color
+            :low:  881
+            :high: 973
+          - :peak: 1000 # Broad-band color
+            :resolution: 50 # a guess
+          - :peak: 1027 # Broad-band color
+            :resolution: 30 # a guess
+      - :abbrev: 'DISR'
+        :name: 'Descent Imager/Spectral Radiometer'
+        :cite: 'Tomasko et al., 1997'
+        :spectra:
+          - :low: 350    # ULV: Violet Photometer
+            :high: 480
+          - :low: 480    # ULVS: Visible Spectrometer
+            :high: 960
+          - :low: 660    # Imagers (3, downward-looking)
+            :high: 1000
+          - :low: 870    # ULIS: Infrared Spectrometer
+            :high: 1700
+  - :name: 'Portable Field Emission Spectrometer' # Note: This just collects spectra, no images or even lines.
+    :abbrev: 'PFES'
+    :sensors:
+      - :name: 'Portable Field Emission Spectrometer'
+        :abbrev: 'PFES'
+        :spectra:
+          - :low: 4500
+            :high: 8000
+            :resolution: 53
+          - :low: 7900
+            :high: 14500
+            :resolution: 120
+  - :name: 'Clementine'
+    :destinations:
+      - 'Luna'
+    :cite: 'Lawson et al., 2000'
+    :sensors:
+      - :name: 'Long-wave Infrared Camera' # thermal only, apparently
+        :abbrev: 'LWIR' # HgCdTe FPA, 128x128
+        :spectra:
+          - :peak: 8750
+            :low: 8000
+            :high: 9500
+  - :name: 'Lunar Reconaissance Orbiter'
+    :abbrev: 'LRO'
+    :cite: 'Paige et al., 2009'
+    :sensors:
+      - :name: 'Diviner Lunar Radiometer Experiment'
+        :abbrev: 'Diviner'
+        :spectra:
+          - :low: 350   # channels 1-2:high sensitivity and reduced sensitivity solar radiation
+            :high: 2800
+          - :low: 7550  # Christiansen
+            :high: 8050
+          - :low: 8100  # Christiansen
+            :high: 8400
+          - :low: 8380  # Christiansen
+            :high: 8680
+          - :low: 13000 # surface temperature > 178K
+            :high: 23000
+          - :low: 25000 # surface temperature 69-178K
+            :high: 41000
+          - :low: 50000 # surface temperature 43-69K
+            :high: 100000
+          - :low: 100000 # surface temperature < 43K
+            :high: 400000
+  - :name: 'Deep Impact'
+    :cite: 'Hampton et al., 2005'
+    :destinations:
+      - 'Tempel 1'
+    :sensors: # both HRI-VIS and MRI use a CCD of common design
+      - :abbrev: 'HRI-IR' # HgCdTe CMOS
+        :name: 'High Resolution Instrument, Infrared'
+        :spectra:
+          - :low: 1000
+            :high: 4800
+            :resolution: 0.2 # actually, significantly better--concerned this is wrong.
+      - :abbrev: 'HRI-VIS'
+        :name: 'High Resolution Instrument, Visible'
+        :spectra:
+          - :low: 340
+            :peak: 650
+            :high: 1000
+          - :peak: 450
+            :resolution: 100
+          - :peak: 550
+            :resolution: 100
+          - :peak: 350 #:resolution: 100 # context
+            :low: 320
+            :high: 400
+          - :peak: 950
+            :resolution: 100
+          - :peak: 750
+            :resolution: 100
+          - :peak: 850
+            :resolution: 100
+          - :peak: 650
+            :resolution: 100
+      - :abbrev: 'MRI'
+        :name: 'Medium Resolution Instrument'
+        :spectra:
+          - :low: 340 # 320?
+            :peak: 650
+            :high: 1000
+          - :peak: 514
+            :resolution: 11.8 # C2 in coma
+          - :peak: 526
+            :resolution: 5.6 # dust in coma
+          - :peak: 750
+            :resolution: 100 # context
+          - :peak: 950
+            :resolution: 100 # context
+          - :peak: 387
+            :resolution: 6.2 # CN in coma
+          - :peak: 345
+            :resolution: 6.8 # dust in coma
+          - :peak: 309
+            :resolution: 6.2 # OH in coma
+      - :abbrev: 'ITS'
+  - :name: 'Mars Exploration Rovers'
+    :cite: 'Christensen et al., 2003'
+    :sensors:
+      - :name: 'Miniature Thermal Emission Spectrometer'
+        :abbrev: 'Mini-TES'
+        :spectra:
+          - :low: 5010
+            :high: 29450
+            :resolution: 25.0 # 9.99 cm^-1, so this ranges from 25 to 0.16, right?
+            sampling: 9.99
+  - :name: 'Near Earth Asteroid Rendezvous'
+    :abbrev: 'NEAR'
+    :destinations:
+      - '(253) Mathilde'
+      - '(433) Eros'
+    :cite: 'Veverka et al., 1997'
+    :sensors:
+      - :name: 'Multispectral Imager'
+        :abbrev: 'MSI'
+        :spectra:  # passively cooled Si CCD with filter wheel
+          - :peak: 450
+            :low: 425
+            :high: 475
+          - :peak: 550
+            :low: 535
+            :high: 565
+          - :peak: 760
+            :low: 750
+            :high: 770
+          - :peak: 950
+            :low: 930
+            :high: 970
+          - :peak: 900
+            :low: 880
+            :high: 920
+          - :peak: 1000
+            :low: 975
+            :high: 1025
+          - :peak: 1050
+            :low: 1010
+            :high: 1090
+      - :name: 'Near-Infrared Spectrometer'
+        :abbrev: 'NIS'
+        :spectra:
+          - :low: 804   # Germanium detector, 32-element
+            :high: 1506
+            :resolution: 21.6
+          - :low: 1348  # InGaAs detector, 32-element
+            :high: 2600
+            :resolution: 43.1
+  - :name: 'Pathfinder Sojourner rover' #http://pds.nasa.gov/ds-view/pds/viewInstrumentProfile.jsp?INSTRUMENT_ID=RCRT&INSTRUMENT_HOST_ID=MPFR
+    :abbrev: 'Sojourner'
+    :destinations:
+      - 'Mars'
+    :cite: 'Matijevic et al., 1996'
+    :sensors:
+      - :name: 'Forward Camera'
+        :spectra:
+          - :low: 830
+            :high: 890
+      - :name: 'Aft Camera'
+        :spectra: # 12 green : 2 red : 2 infrared; infrared had very lw responsiveness
+          - :low: 500  # fairly standard RGB except TONS of G receptors in Bayer filter
+            :high: 900 # blue pixels were used for infrared, but were really weak
+  - :name: 'Galileo Orbiter'
+    destination:
+      - 'Venus'
+      - 'Luna'
+      - 'Earth'
+      - 'some asteroids?'
+      - 'Jupiter'
+      - 'Jovian satellites'
+    :cite: 'Belton et al., 1992'
+    :sensors:
+      - :name: 'Solid State Imaging Experiment'
+        :abbrev: 'SSI'
+        :spectra: # only reduced from previous missions in 350-375 region; filter wheel inherited from Voyager
+          - :peak: 404 # violet - Voyager compatibility - broad
+            :resolution: 45
+          - :peak: 559 # green  - Voyager compatibility - broad
+            :resolution: 65
+          - :peak: 671 # red    - Voyager compatibility - broad
+            :resolution: 60
+          - :peak: 734 # narrow: methane absorption bands
+            :resolution: 10
+          - :peak: 887 # narrow: methane absorption bands
+            :resolution: 16
+          - :peak: 756 # "continuum"
+            :resolution: 19
+          - :peak: 986 # Near-Infrared Mapping Spectrometer (NIMS) overlap, and electronic absorption features (Fe-bearing minerals)
+            :resolution: 50
+  - :name: 'Mars Global Surveyor'
+    :sensors:
+      - :name: 'Mars Orbiter Camera'
+        :abbrev: 'MOC'
+        type: 'push-broom'
+        :detector: 'CCD linear'
+        :spectra:
+  - :name: 'Voyager 1: Voyager Imaging Experiment'
+    launch: '1977 September 5'
+    :sensors:
+      - :name: 'Narrow Angle Camera'
+        :abbrev: 'NAC'
+        :detector: 'vidicon, selenium-sulfur, 1-inch'
+        :cite: 'Malin et al., 1992; http://pds-rings.seti.org/voyager/iss/inst_cat_na1.html#filters'
+        :spectra:
+          - :peak: 346 # UV: wideband, centered at 325
+            :low: 280
+            :high: 370
+          - :peak: 497 # broadband/clear
+            :low: 280
+            :high: 640
+          - :peak: 416 # violet: wideband
+            :low: 350
+            :high: 450
+          - :peak: 479 # blue: wideband
+            :low: 430
+            :high: 530
+          - :peak: 591 # orange
+            :low: 590
+            :high: 640
+          - :peak: 566 # green
+            :low: 530
+            :high: 640
+      - :name: 'Wide Angle Camera'
+        :abbrev: 'WAC'
+        :detector: 'vidicon, selenium-sulfur, 1"' # ?
+        :cite: 'Malin et al., 1992; http://pds-rings.seti.org/voyager/iss/inst_cat_wa1.html#filters'
+        :spectra:
+          - :peak: 470 # broadband/clear
+            :low: 280
+            :high: 640
+          - :peak: 426 # wideband violet
+            :low: 350
+            :high: 450
+          - :peak: 476 # wideband, blue
+            :low: 430
+            :high: 530
+          - :peak: 589 # Sodium-D
+            :low: 588
+            :high: 590
+          - :peak: 560 # green: should be centered at 585...?
+            :low: 530
+            :high: 640
+          - :peak: 541 # methane (Uranus)
+            :low: 536
+            :high: 546
+          - :peak: 605 # orange
+            :low: 590
+            :high: 640
+          - :peak: 618.4 # narrowband, methane (J-S-T)
+            :low: 614
+            :high: 624
+
+
+          #- :low: 375
+          #  :high: 1100
+# Didn't include Mariner 7
+# Didn't include Voyager 1 or 2, which both had Michelson interferometers
+# Didn't include Vega's IKS, which failed.
+# Didn't include Mariner 9, which had a Michelson interferometer and an infrared spectrometer
+# Don't have TIMS, which flew aboard C-130, because it's another Earth test.
+# Galileo has a Si CCD 404-986nm, 800x800! Cool. Filter wheel. Probably not worth it.
+# Still need Mars Global Surveyor MOC
