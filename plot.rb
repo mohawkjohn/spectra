@@ -53,6 +53,9 @@ spectra.each_pair do |key,ary|
     end
 
     spectra[key][i] = item.merge(extra)
+
+    # Make sure we have a resolution for the heatmap
+    spectra[key][i][:resolution] ||= spectra[key][i][:high] - spectra[key][i][:low]
   end
 end
 
@@ -62,6 +65,7 @@ data = pdata.name('spectra').values(spectra)
 
 ys = ordinal_scale.name('sensors').from('spectra.mission').to_height
 xs = pow_scale.name('x').from('spectra.mean').exponent(0.1).domain([100,1000000]).range([-400.0, WIDTH.to_f])
+cs = log_scale.name('c').from('spectra.resolution').domain([1.0,1000.0]).range(['red', 'yellow'])
 
 rm = rect_mark.from(data) do
   enter do
@@ -69,15 +73,16 @@ rm = rect_mark.from(data) do
     x_end    { scale(xs).from(:high)}
     y_start  { scale(ys).from(:mission)  }
     height   { scale(ys).offset(-1).use_band }
-    fill '#ccc'
-    stroke 'red'
+    fill     { scale(cs).from(:resolution) }
+    #fill '#ccc'
+    #stroke 'red'
   end
-  update do
-    fill 'steelblue'
-  end
-  hover do
-    fill 'red'
-  end
+  #update do
+  #  fill     { scale(cs).from(:resolution) }
+  #end
+  #hover do
+  #  fill 'purple'
+  #end
 end
 
 # tm = text_mark.from(data) do
@@ -105,7 +110,7 @@ end
 vis = visualization.width(WIDTH).height(600) do
   padding top: 10, left: 140, bottom: 30, right: 25
   data data
-  scales xs, ys
+  scales xs, ys, cs
   marks rm #, tm
   axes x_axis.scale(xs).values([100,300,600,1000,2500,5000,10000,25000,50000,100000,250000,500000,1000000]), y_axis.scale(ys)
 end
