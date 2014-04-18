@@ -2,6 +2,8 @@ require 'plotrb'
 require 'yaml'
 require 'pry'
 
+WIDTH=700
+
 missions = YAML.load(File.read('missions.yaml'))[:missions]
 
 spectra = Hash.new { |h,k| h[k] = [] }
@@ -46,7 +48,7 @@ spectra = spectra.values.flatten
 data = pdata.name('spectra').values(spectra)
 
 ys = ordinal_scale.name('sensors').from('spectra.mission').to_height
-xs = linear_scale.name('x').from('spectra.mean').nicely.to_width
+xs = pow_scale.name('x').from('spectra.mean').exponent(0.1).domain([100,1000000]).range([-400.0, WIDTH.to_f])
 
 rm = rect_mark.from(data) do
   enter do
@@ -86,12 +88,12 @@ end
 #end
 
 
-vis = visualization.width(600).height(700) do
+vis = visualization.width(WIDTH).height(600) do
   padding top: 10, left: 140, bottom: 30, right: 25
   data data
   scales xs, ys
   marks rm #, tm
-  axes x_axis.scale(xs), y_axis.scale(ys)
+  axes x_axis.scale(xs).values([100,300,600,1000,2500,5000,10000,25000,50000,100000,250000,500000,1000000]), y_axis.scale(ys)
 end
 
 puts vis.generate_spec(:pretty)
