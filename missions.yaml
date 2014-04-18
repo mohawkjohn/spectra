@@ -491,6 +491,7 @@
             :high: 882
             :peak: 860
   - :name: 'Rosetta Orbiter, Venus Express'
+    :abbrev: 'Rosetta/Venus Expr'
     :cite: 'Coradini et al., 2007'
     :destinations:
       - 'Earth'
@@ -941,15 +942,9 @@
             :resolution: 19
           - :peak: 986 # Near-Infrared Mapping Spectrometer (NIMS) overlap, and electronic absorption features (Fe-bearing minerals)
             :resolution: 50
-  - :name: 'Mars Global Surveyor'
-    :sensors:
-      - :name: 'Mars Orbiter Camera'
-        :abbrev: 'MOC'
-        type: 'push-broom'
-        :detector: 'CCD linear'
-        :spectra:
   - :name: 'Voyager 1: Voyager Imaging Experiment'
-    launch: '1977 September 5'
+    :abbrev: 'Voyager 1'
+    :launch: '1977 September 5'
     :sensors:
       - :name: 'Narrow Angle Camera'
         :abbrev: 'NAC'
@@ -1003,7 +998,13 @@
           - :peak: 618.4 # narrowband, methane (J-S-T)
             :low: 614
             :high: 624
-
+#  - :name: 'Mars Global Surveyor'
+#    :sensors:
+#      - :name: 'Mars Orbiter Camera'
+#        :abbrev: 'MOC'
+#        type: 'push-broom'
+#        :detector: 'CCD linear'
+#        :spectra:
 
           #- :low: 375
           #  :high: 1100
