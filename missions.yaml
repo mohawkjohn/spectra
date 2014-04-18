@@ -349,12 +349,6 @@
     :destinations:
       - 'Luna'
     :sensors:
-      - :name: 'Visible Camera'
-        :abbrev: 'VIS'
-        :spectra:
-          - color: red
-          - color: green
-          - color: blue
       - :name: 'Near-Infrared Cameras'
         :abbrev: 'NIR1/NIR2'
         :spectra:
@@ -381,10 +375,11 @@
             :high: 1000
       - :name: 'Visible Spectrometer'
         :abbrev: 'VSP'
+        :detector: 'CCD, 1044x64, Hammamatsu'
         :spectra:
-          - :peak: 300 # R~300
-          - :peak: 400 # R~500
-          - :peak: 600 # R~850
+          - :low: 263
+            :high: 650
+            :resolution: 1 # this actually varies from 1.0 to 0.7nm. Resolving power R~300 at 300nm, R~500 at 400nm, R~850 at 600nm
       - :name: 'Near-Infrared Spectrometer 1' # Polychromix
         :abbrev: 'NSP1'
         :spectra: # InGaAs
@@ -860,7 +855,7 @@
           - :low: 5010
             :high: 29450
             :resolution: 25.0 # 9.99 cm^-1, so this ranges from 25 to 0.16, right?
-            sampling: 9.99
+            :sampling: 9.99
   - :name: 'Near Earth Asteroid Rendezvous'
     :abbrev: 'NEAR'
     :destinations:

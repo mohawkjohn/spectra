@@ -29,6 +29,19 @@ spectra.each_pair do |key,ary|
       }
     if item.has_key?(:peak)
       extra[:mean] = item[:peak]
+
+      # Make sure it has a low and a high
+      if !item.has_key?(:low) && !item.has_key?(:high)
+        unless item.has_key?(:resolution)
+          raise("resolution missing for item #{item.inspect}")
+        end
+        extra[:low]  = item[:peak] - item[:resolution]/2.0
+        extra[:high] = item[:peak] + item[:resolution]/2.0
+      elsif item.has_key?(:low) && !item.has_key?(:high)
+        extra[:high] = item[:low] + item[:resolution]
+      elsif item.has_key?(:high) && !item.has_key?(:low)
+        extra[:low] = item[:high] - item[:resolution]
+      end
     elsif item.has_key?(:low)
       if item.has_key?(:high)
         extra[:mean] = (item[:low] + item[:high]) / 2.0
@@ -57,6 +70,7 @@ rm = rect_mark.from(data) do
     y_start  { scale(ys).from(:mission)  }
     height   { scale(ys).offset(-1).use_band }
     fill '#ccc'
+    stroke 'red'
   end
   update do
     fill 'steelblue'
