@@ -3,6 +3,7 @@
   - :abbrev: 'MRO'
     :name: 'Mars Reconaissance Orbiter'
     :agency: 'NASA'
+    :launch: 12 August 2005
     :destinations:
       - 'Mars'
       - 'Phobos'
@@ -61,6 +62,7 @@
             :low: 40800
   - :name: 'Mars Express'
     :agency: 'ESA'
+    :launch: 2 June 2003
     :destinations:
       - 'Mars'
       - 'Phobos'
@@ -88,22 +90,36 @@
             :resolution: 20
   - :name: 'Chandrayaan-1'
     :agency: 'ISRO'
+    :launch: 22 October 2008
     :destinations:
       - 'Luna'
     :cite: 'Pieters et al., 2009'
     :sensors:
       - :abbrev: 'HySI'
-        :name: 'Hyper Spectral Imager'
+        :name: 'Hyperspectral Imager'
+        :spectra:
+          - :low: 400
+            :high: 950
+            :resolution: 15
       - :abbrev: 'M3'
         :name: 'Moon Mineralogy Mapper'
+        :detector: 'HgCdTe array, 2D'
         :spectra:
           - :low: 405 # channels below 434 may be below required SNR
             :high: 3000
             :resolution: 10
+      - :abbrev: 'SIR-2'
+        :name: 'Near Infrared Spectrometer'
+        :detector: 'linear CCD array'
+        :spectra:
+          - :low: 900
+            :high: 2400
+            :resolution: 6
   - :abbrev: 'AVIRIS' # aboard U-2 and ER-2
     :name: 'Airborne Visible/Infrared Imaging Spectrometer'
     :destinations:
       - 'Earth'
+    :launch: 1986
     :cite: 'Vane et al., 1993'
     :sensors:
       - :abbrev: 'AVIRIS'
@@ -124,7 +140,9 @@
   - :name: 'Mercury MESSENGER'
     :abbrev: 'MESSENGER'
     :cite: 'Hawkins et al., 2006'
+    :launch: 3 August 2004
     :destinations:
+      - 'Venus'
       - 'Mercury'
     :sensors:
       - :name: 'Mercury Dual Imaging Sensor Narrow Angle Camera'
@@ -161,6 +179,7 @@
             :resolution: 20
   - :name: 'New Horizons'
     :cite: 'Reuter et al., 2008'
+    :launch: 19 January 2006
     :destinations:
       - 'Pluto'
       - 'Charon'
@@ -193,6 +212,7 @@
             :high: 2250
             :resolution: 4.1 # 3.8 for the lowest, I think
   - :name: 'Hayabusa 2 Mobile Asteroid Surface Scout'
+    :launch: 'future'
     :abbrev: 'MASCOT'
     :cite: 'Jaumann et al., 2014'
     :destinations:
@@ -213,6 +233,7 @@
           - :low: 5000
             :high: 100000
   - :name: 'Hayabusa (MUSES-C)'
+    :launch: 9 May 2003
     :cite: 'Kitazato et al., 2008'
     :destinations:
       - '(25143) Itokawa'
@@ -225,6 +246,7 @@
             :resolution: 24
   - :name: 'Dawn'
     :cite: 'Sierks et al., 2011' # Rayman et al., 2006
+    :launch: 27 September 2007
     :destinations:
       - '(4) Vesta'
       - '(1) Ceres'
@@ -249,6 +271,7 @@
           - :peak: 980
             :resolution: 80
   - :name: 'Landsat 1-3'
+    :launch: 23 July 1972, 22 January 1975, 5 March 1978
     :cite: 'Loveland et al., 2012'
     :sensors:
       - :name: 'Return Beam Vidicon'
@@ -275,6 +298,7 @@
           - :low: 10400 # thermal
             :high: 12600
   - :name: 'Landsat 4-5'
+    :launch: 16 July 1982, 1 March 1984
     :cite: 'Loveland et al., 2012'
     :sensors:
       - :name: 'Multispectral Scanner'
@@ -290,8 +314,9 @@
             :high: 1100
           - :low: 10400 # thermal
             :high: 12600
-  - :name: 'Landsat 7'
+  - :name: 'Landsat 7 (and 6)'
     :cite: 'Loveland et al., 2012'
+    :launch: 5 October 1993; 15 April 1999
     :sensors:
       - :name: 'Enhanced Thematic Mapper Plus'
         :abbrev: 'ETM+'
@@ -314,6 +339,7 @@
             :high: 900
   - :name: 'Landsat 8'
     :cite: 'Loveland et al., 2012'
+    :launch: 11 February 2013
     :sensors:
       - :name: 'Operational Land Imager'
         :abbrev: 'OLI'
@@ -345,6 +371,7 @@
             :high: 12500
   - :name: 'Lunar Crater Observation and Sensing Satellite'
     :abbrev: 'LCROSS'
+    :launch: 18 June 2009
     :cite: 'Ennico et al., 2010'
     :destinations:
       - 'Luna'
@@ -393,6 +420,7 @@
             :high: 2450
             :resolution: 35 # as low as 16
   - :name: 'Viking'
+    :launch: 20 August 1975
     :destinations:
       - 'Mars'
     :cite: 'Chase et al., 1978'
@@ -415,25 +443,27 @@
           - :peak: 20000 # surface temperatures
             :low: 17700
             :high: 24000
-  - :name: 'Vega-IKS'
+  - :name: 'Vega'
+    :launch: 15 December 1984
     :cite: 'Combes et al., 1988'
     :destinations:
       - "Halley's Comet"
     :sensors:
-      - :name: 'Long-wavelength spectroscopic channel'
-        :abbrev: 'LSC'
+      - :name: 'IKS Long-wavelength spectroscopic channel'
+        :abbrev: 'IKS LSC'
         :spectra:
           - :low: 6000
             :high: 12000
             :resolution: 160
-      - :name: 'Short-wavelength spectroscopic channel'
-        :abbrev: 'SSC'
+      - :name: 'IKS Short-wavelength spectroscopic channel'
+        :abbrev: 'IKS SSC'
         :spectra:
           - :low: 2400
             :high: 4900
             :resolution: 70
   - :name: 'Mars Odyssey'
     :cite: 'Christensen 2002'
+    :launch: 7 April 2001
     :destinations:
       - Mars
     :sensors:
@@ -487,6 +517,7 @@
             :peak: 860
   - :name: 'Rosetta Orbiter, Venus Express'
     :abbrev: 'Rosetta/Venus Expr'
+    :launch: 9 November 2005, 2 March 2004
     :cite: 'Coradini et al., 2007'
     :destinations:
       - 'Earth'
@@ -557,6 +588,7 @@
   - :name: 'Deep Space 1'
     :abbrev: 'DS1'
     :cite: "Rodgers et al., 2007"
+    :launch: 24 October 1998
     :destinations:
       - "Borrelly"
     :sensors:
@@ -573,7 +605,8 @@
             :high: 2400
             :resolution: 12
             interval: 6.6
-  - :name: 'Cassini/Huygens'
+  - :name: 'Cassini—Huygens'
+    :launch: 15 October 1997
     :cite: 'Brown et al., 2004'
     :destinations:
       - 'Venus' # VIMS-IR was not operational at Venus, sadly
@@ -749,6 +782,8 @@
             :high: 1700
   - :name: 'Portable Field Emission Spectrometer' # Note: This just collects spectra, no images or even lines.
     :abbrev: 'PFES'
+    :launch: 1986
+    :cite: 'Hoover & Kahle, 1986'
     :sensors:
       - :name: 'Portable Field Emission Spectrometer'
         :abbrev: 'PFES'
@@ -760,8 +795,10 @@
             :high: 14500
             :resolution: 120
   - :name: 'Clementine'
+    :launch: 25 January 1994
     :destinations:
       - 'Luna'
+      - '(1620) Geographos [canceled]'
     :cite: 'Lawson et al., 2000'
     :sensors:
       - :name: 'Long-wave Infrared Camera' # thermal only, apparently
@@ -771,6 +808,7 @@
             :low: 8000
             :high: 9500
   - :name: 'Lunar Reconaissance Orbiter'
+    :launch: 18 June 1009
     :abbrev: 'LRO'
     :cite: 'Paige et al., 2009'
     :sensors:
@@ -793,10 +831,17 @@
             :high: 100000
           - :low: 100000 # surface temperature < 43K
             :high: 400000
+#  - :name: 'Stardust–NExT'
+#    :launch: 7 February 1999
+#    :destinations:
+#      - '(5335) Annefrank'
+#      - '81P/Wild 2'
+#      - '9P/Tempel 1'
   - :name: 'Deep Impact'
+    :launch: 12 January 2005
     :cite: 'Hampton et al., 2005'
     :destinations:
-      - 'Tempel 1'
+      - '9P/Tempel 1'
     :sensors: # both HRI-VIS and MRI use a CCD of common design
       - :abbrev: 'HRI-IR' # HgCdTe CMOS
         :name: 'High Resolution Instrument, Infrared'
@@ -845,8 +890,9 @@
             :resolution: 6.8 # dust in coma
           - :peak: 309
             :resolution: 6.2 # OH in coma
-      - :abbrev: 'ITS'
-  - :name: 'Mars Exploration Rovers'
+  - :name: 'Mars Exploration Rover Mission'
+    :launch: 2003 # June and July
+    :abbrev: 'MER'
     :cite: 'Christensen et al., 2003'
     :sensors:
       - :name: 'Miniature Thermal Emission Spectrometer'
@@ -855,9 +901,10 @@
           - :low: 5010
             :high: 29450
             :resolution: 25.0 # 9.99 cm^-1, so this ranges from 25 to 0.16, right?
-            :sampling: 9.99
-  - :name: 'Near Earth Asteroid Rendezvous'
-    :abbrev: 'NEAR'
+            :inverse-resolution: 9.99
+  - :name: 'Near Earth Asteroid Rendezvous — Shoemaker'
+    :abbrev: 'NEAR Shoemaker'
+    :launch: 17 February 1996
     :destinations:
       - '(253) Mathilde'
       - '(433) Eros'
@@ -896,8 +943,9 @@
           - :low: 1348  # InGaAs detector, 32-element
             :high: 2600
             :resolution: 43.1
-  - :name: 'Pathfinder Sojourner rover' #http://pds.nasa.gov/ds-view/pds/viewInstrumentProfile.jsp?INSTRUMENT_ID=RCRT&INSTRUMENT_HOST_ID=MPFR
+  - :name: 'Mars Pathfinder Sojourner rover' #http://pds.nasa.gov/ds-view/pds/viewInstrumentProfile.jsp?INSTRUMENT_ID=RCRT&INSTRUMENT_HOST_ID=MPFR
     :abbrev: 'Sojourner'
+    :launch: 4 December 1996
     :destinations:
       - 'Mars'
     :cite: 'Matijevic et al., 1996'
@@ -911,7 +959,8 @@
           - :low: 500  # fairly standard RGB except TONS of G receptors in Bayer filter
             :high: 900 # blue pixels were used for infrared, but were really weak
   - :name: 'Galileo Orbiter'
-    destination:
+    :launch: 18 October 1989
+    :destinations:
       - 'Venus'
       - 'Luna'
       - 'Earth'
@@ -939,7 +988,7 @@
             :resolution: 50
   - :name: 'Voyager 1: Voyager Imaging Experiment'
     :abbrev: 'Voyager 1'
-    :launch: '1977 September 5'
+    :launch: 1977 September 5
     :sensors:
       - :name: 'Narrow Angle Camera'
         :abbrev: 'NAC'
@@ -993,13 +1042,29 @@
           - :peak: 618.4 # narrowband, methane (J-S-T)
             :low: 614
             :high: 624
-#  - :name: 'Mars Global Surveyor'
-#    :sensors:
-#      - :name: 'Mars Orbiter Camera'
-#        :abbrev: 'MOC'
-#        type: 'push-broom'
-#        :detector: 'CCD linear'
-#        :spectra:
+  - :name: 'Mars Observer / Mars Global Surveyor'
+    :abbrev: 'MO/MGS'
+    :launch: 25 September 1992, 7 November 1996
+    :sensors:
+      - :name: 'Mars Orbiter Camera'
+        :abbrev: 'MOC'
+        :type: 'push-broom'
+        :detector: 'CCD linear (push-broom)'
+      - :name: 'Thermal Emission Spectrometer'
+        :abbrev: 'TES'
+        :spectra:
+          - :low: 300
+            :high: 2900
+            :inverse-resolution: 5.0 # cm^-1
+            :resolution: 0.0021 # better than
+          - :low: 5100
+            :high: 150000
+            :inverse-resolution: 5.0 # cm^-1
+            :resolution: 5400 # better than
+          - :low: 5800    # 201.6-1708.9/cm
+            :high: 50000
+            :inverse-resolution: 5.0 # cm^-1
+            :resolution: 1200 # better than
 
           #- :low: 375
           #  :high: 1100

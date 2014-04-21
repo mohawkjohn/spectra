@@ -1,6 +1,7 @@
 require 'plotrb'
 require 'yaml'
 require 'pry'
+require 'date'
 
 WIDTH=700
 
@@ -8,13 +9,33 @@ missions = YAML.load(File.read('missions.yaml'))[:missions]
 
 spectra = Hash.new { |h,k| h[k] = [] }
 
+def parse_date d
+  if d.is_a?(Fixnum)
+    Date.new(d)
+  elsif d == "future"
+    Date.new(2015)
+  elsif d.include?(',')
+    Date.parse(d.split(',')[0])
+  else
+    Date.parse(d)
+  end
+end
+
 missions.each do |mission|
+  unless mission.has_key?(:launch)
+    STDERR.puts "Launch date missing for item #{mission.inspect}"
+  end
+
   #puts "mission #{mission.inspect}"
   mission[:sensors].each do |sensor|
     #puts "\tsensor #{sensor.inspect}"
     if sensor.has_key?(:spectra) && !sensor[:spectra].nil?
       sensor[:spectra].each do |spectrum|
-        spectra[sensor[:abbrev] || sensor[:name]] << spectrum.merge({:mission => (mission[:abbrev] || mission[:name])})
+
+        spectra[sensor[:abbrev] || sensor[:name]] << spectrum.merge({
+          :mission => (mission[:abbrev] || mission[:name]),
+          :launch  => parse_date(mission[:launch])
+        })
       end
     else
       STDERR.puts "sensor #{sensor[:abbrev] || sensor[:name]} on #{mission[:abbrev] || mission[:name]} is missing spectra"
@@ -27,6 +48,7 @@ spectra.each_pair do |key,ary|
     extra = {
         :id => key,
       }
+
     if item.has_key?(:peak)
       extra[:mean] = item[:peak]
 
@@ -59,7 +81,7 @@ spectra.each_pair do |key,ary|
   end
 end
 
-spectra = spectra.values.flatten
+spectra = spectra.values.flatten.sort_by { |s| s[:launch] }
 
 data = pdata.name('spectra').values(spectra)
 
