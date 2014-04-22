@@ -3,7 +3,7 @@ require 'yaml'
 require 'pry'
 require 'date'
 
-WIDTH=700
+WIDTH=900
 
 missions = YAML.load(File.read('missions.yaml'))[:missions]
 
@@ -21,6 +21,7 @@ def parse_date d
   end
 end
 
+
 missions.each do |mission|
   unless mission.has_key?(:launch)
     STDERR.puts "Launch date missing for item #{mission.inspect}"
@@ -31,7 +32,6 @@ missions.each do |mission|
     #puts "\tsensor #{sensor.inspect}"
     if sensor.has_key?(:spectra) && !sensor[:spectra].nil?
       sensor[:spectra].each do |spectrum|
-
         spectra[sensor[:abbrev] || sensor[:name]] << spectrum.merge({
           :mission => (mission[:abbrev] || mission[:name]),
           :launch  => parse_date(mission[:launch])
@@ -86,36 +86,34 @@ spectra = spectra.values.flatten.sort_by { |s| s[:launch] }
 data = pdata.name('spectra').values(spectra)
 
 ys = ordinal_scale.name('sensors').from('spectra.mission').to_height
-xs = pow_scale.name('x').from('spectra.mean').exponent(0.1).domain([100,1000000]).range([-400.0, WIDTH.to_f])
-cs = log_scale.name('c').from('spectra.resolution').domain([1.0,1000.0]).range(['red', 'yellow'])
+xs = pow_scale.name('x').from('spectra.mean').exponent(0.1).domain([100,1000000]).range([-600.0, WIDTH.to_f])
+cs = log_scale.name('c').from('spectra.resolution').domain([0.1,1000.0]).range(['red', 'yellow'])
+rgbs = log_scale.name('rgb').from('spectra.peak').domain([426.3, 529.7, 552.4]).range(['red', 'green', 'blue'])
 
 rm = rect_mark.from(data) do
   enter do
     x_start  { scale(xs).from(:low) }
     x_end    { scale(xs).from(:high)}
-    y_start  { scale(ys).from(:mission)  }
+    y_start  { scale(ys).from(:mission) }
     height   { scale(ys).offset(-1).use_band }
     fill     { scale(cs).from(:resolution) }
-    #fill '#ccc'
-    #stroke 'red'
+    fill_opacity 0.7
+    #stroke   { scale(rgbs).from(:peak) }
   end
-  #update do
-  #  fill     { scale(cs).from(:resolution) }
-  #end
-  #hover do
-  #  fill 'purple'
-  #end
 end
 
-# tm = text_mark.from(data) do
-#   enter do
-#     x       { scale(xs).from('spectra.mean')}
-#     text    { field(:id) }
-#     align :center
-#     baseline :bottom
-#     fill '#000'
-#   end
-# end
+ tm = text_mark.from(data) do
+   enter do
+     x       { scale(xs).from(:mean)}
+     text    { field(:id) }
+     y       { scale(ys).from(:mission) }
+     font_size 7
+     angle 270
+     align :right
+     baseline :bottom
+     fill '#000'
+   end
+ end
 
 #tm = text_mark.from(data) do
 #  enter do
@@ -132,7 +130,7 @@ end
 vis = visualization.width(WIDTH).height(600) do
   padding top: 10, left: 140, bottom: 30, right: 25
   data data
-  scales xs, ys, cs
+  scales xs, ys, cs, rgbs
   marks rm #, tm
   axes x_axis.scale(xs).values([100,300,600,1000,2500,5000,10000,25000,50000,100000,250000,500000,1000000]), y_axis.scale(ys)
 end

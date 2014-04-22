@@ -1,5 +1,41 @@
 ---
 :missions:
+  - :name: 'Human photoreceptors'
+    :cite: 'Merbs & Nathans, 1992; Dartnall et al., 1983'
+    :launch: 0
+    :sensors:
+      - :abbrev: 'rods'
+        :name: 'rhodopsin'
+        :spectra:
+          - :peak: 497 # rhodopsin (rods)
+            :low: 430
+            :high: 540
+      - :abbrev: 'SWSO: blue'
+        :name: 'short wavelength sensitive opsin'
+        :spectra:
+          - :peak: 426.3 # blue
+            :low: 365
+            :high: 460
+      - :abbrev: 'MWSO: green'
+        :name: 'middle wavelength sensitive opsin'
+        :spectra:
+          - :peak: 529.7 # green
+            :low: 470
+            :high: 580
+      - :abbrev: 'LWSO: red'
+        :name: 'long wavelength sensitive opsin'
+        :spectra:
+          - :peak: 552.4 # red
+            :low: 490
+            :high: 615
+  - :name: 'Human synthetic'
+    :launch: 1
+    :sensors:
+      - :name: 'eye'
+        :spectra:
+          - :low: 390
+            :high: 700
+            :resolution: 0.0001 # MAGNITUDE only; inferred from 2.4 million colors. Couldn't find a study.
   - :abbrev: 'MRO'
     :name: 'Mars Reconaissance Orbiter'
     :agency: 'NASA'
@@ -622,18 +658,18 @@
       - 'Castillo'
       - 'Saturn'
     :sensors:
-      - :name: 'Visual and Infrared Mapping Spectrometer, Visible' # Seems that it has to be kept pretty cold?
-        :abbrev: 'VIMS-V' # push-broom, using spacecraft drift or scanning of telescope secondary mirror
-        :spectra:
-          - :low: 300    # visual
-            :high: 1050
-            :resolution: 7.33 # a couple different numbers here. it says to see Capaccioni et al., 1998
       - :name: 'Visual and Infrared Mapping Spectrometer, Infrared'
         :abbrev: 'VIMS-IR' # linear array detector; whiskbroom via scanning telescope secondary mirror
         :spectra: # FOV is wavelength dependent, as a result.
           - :low: 850
             :high: 5100
             :resolution: 16.6
+      - :name: 'Visual and Infrared Mapping Spectrometer, Visible' # Seems that it has to be kept pretty cold?
+        :abbrev: 'VIMS-V' # push-broom, using spacecraft drift or scanning of telescope secondary mirror
+        :spectra:
+          - :low: 300    # visual
+            :high: 1050
+            :resolution: 7.33 # a couple different numbers here. it says to see Capaccioni et al., 1998
       - :abbrev: 'CIRS: Far-IR'
         :name: 'Composite Infrared Spectrometer: Far-IR'
         :detector: 'Thermopile, 2 pixels'
@@ -643,6 +679,7 @@
             :inverse-low: 600
             :inverse-high: 10
             :inverse-resolution: [0.5, 15.5]
+            :resolution: 47000 # better than
             #:resolution: [400, 47000] # 0.5-15.5/cm
       - :abbrev: 'CIRS: Mid-IR 1'
         :name: 'Composite Infrared Spectrometer: Mid-IR 1'
@@ -651,8 +688,21 @@
           - :low: 7000 # 1400/cm
             :inverse-low: 1400
             :high: 9100 # 1100/cm
+            :resolution: 130 # to 80
             :inverse-high: 1100
-            :inverse-resolution: [0.53, 15.5] # 0.5-15.5/cm
+            :inverse-resolution: [0.53, 15.5] # 0.53-15.5/cm
+      - :abbrev: 'DISR'
+        :name: 'Descent Imager/Spectral Radiometer'
+        :cite: 'Tomasko et al., 1997'
+        :spectra:
+          - :low: 350    # ULV: Violet Photometer
+            :high: 480
+          - :low: 480    # ULVS: Visible Spectrometer
+            :high: 960
+          - :low: 660    # Imagers (3, downward-looking)
+            :high: 1000
+          - :low: 870    # ULIS: Infrared Spectrometer
+            :high: 1700
       - :abbrev: 'CIRS: Mid-IR 2'
         :name: 'Composite Infrared Spectrometer: Mid-IR 2'
         :detector: 'PC HgCdTe, 1x10'
@@ -661,7 +711,8 @@
             :inverse-low: 1100
             :high: 17000 # 600/cm
             :inverse-high: 600
-            :inverse-resolution: [0.5, 0.53] # 0.5-15.5/cm
+            :inverse-resolution: [0.53, 15.5] # 0.5-15.5/cm
+            :resolution: 1.9 # better than -- down to 0.53
       - :name: 'Imaging Science Subsystem NAC'
         :detector: 'CCD 1024x1024# three-phase, front-side illuminated'
         :abbrev: 'ISS NAC'
@@ -768,18 +819,6 @@
             :resolution: 50 # a guess
           - :peak: 1027 # Broad-band color
             :resolution: 30 # a guess
-      - :abbrev: 'DISR'
-        :name: 'Descent Imager/Spectral Radiometer'
-        :cite: 'Tomasko et al., 1997'
-        :spectra:
-          - :low: 350    # ULV: Violet Photometer
-            :high: 480
-          - :low: 480    # ULVS: Visible Spectrometer
-            :high: 960
-          - :low: 660    # Imagers (3, downward-looking)
-            :high: 1000
-          - :low: 870    # ULIS: Infrared Spectrometer
-            :high: 1700
   - :name: 'Portable Field Emission Spectrometer' # Note: This just collects spectra, no images or even lines.
     :abbrev: 'PFES'
     :launch: 1986
@@ -831,12 +870,6 @@
             :high: 100000
           - :low: 100000 # surface temperature < 43K
             :high: 400000
-#  - :name: 'Stardust–NExT'
-#    :launch: 7 February 1999
-#    :destinations:
-#      - '(5335) Annefrank'
-#      - '81P/Wild 2'
-#      - '9P/Tempel 1'
   - :name: 'Deep Impact'
     :launch: 12 January 2005
     :cite: 'Hampton et al., 2005'
@@ -1045,6 +1078,8 @@
   - :name: 'Mars Observer / Mars Global Surveyor'
     :abbrev: 'MO/MGS'
     :launch: 25 September 1992, 7 November 1996
+    :destinations:
+      - 'Mars'
     :sensors:
       - :name: 'Mars Orbiter Camera'
         :abbrev: 'MOC'
@@ -1065,9 +1100,139 @@
             :high: 50000
             :inverse-resolution: 5.0 # cm^-1
             :resolution: 1200 # better than
+  - :name: 'Earth Observing System (MODIS): Terra and Aqua'
+    :abbrev: 'EOS MODIS-N (proposed)'
+    :launch: 1998
+    :destinations:
+      - 'Earth'
+    :sensors:
+      - :name: 'Moderate Resolution Imaging Spectroradiometer, Nadir-Viewing'
+        :abbrev: 'MODIS-N'
+        :spectra:
+          - :peak: 700
+            :resolution: 100
+          - :peak: 470
+            :resolution: 20
+          - :peak: 555
+            :resolution: 20
+          - :peak: 675
+            :resolution: 20
+          - :peak: 880
+            :resolution: 20
+          - :peak: 435
+            :resolution: 10
+          - :peak: 490
+            :resolution: 10
+          - :peak: 520
+            :resolution: 10
+          - :peak: 565
+            :resolution: 10
+          - :peak: 620
+            :resolution: 10
+          - :peak: 665
+            :resolution: 10
+          - :peak: 685
+            :resolution: 10
+          - :peak: 765
+            :resolution: 10
+          - :peak: 865
+            :resolution: 10
+          - :peak: 754
+            :resolution: 10
+          - :peak: 761
+            :resolution: 1.2
+          - :peak: 763
+            :resolution: 1.2
+          - :peak: 1240
+            :resolution: 20
+          - :peak: 1640
+            :resolution: 20
+          - :peak: 2060
+            :resolution: 50
+          - :peak: 2130
+            :resolution: 50
+          - :peak: 575
+            :resolution: 150
+          - :peak: 880
+            :resolution: 120
+          - :peak: 3750
+            :resolution: 90
+          - :peak: 3959
+            :resolution: 50
+          - :peak: 4050
+            :resolution: 50
+          - :peak: 4465
+            :resolution: 50
+          - :peak: 4515
+            :resolution: 50
+          - :peak: 4565
+            :resolution: 50
+          - :peak: 6715
+            :resolution: 360
+          - :peak: 7325
+            :resolution: 300
+          - :peak: 9730
+            :resolution: 300
+          - :peak: 11030
+            :resolution: 500
+          - :peak: 12020
+            :resolution: 500
+          - :peak: 13335
+            :resolution: 300
+          - :peak: 13635
+            :resolution: 300
+          - :peak: 13935
+            :resolution: 300
+          - :peak: 14235
+            :resolution: 300
+  - :name: 'Earth Observing System (MODIS): Terra and Aqua'
+    :abbrev: 'EOS-AM1 MODIS (actual)'
+    :launch: 1998
+    :destinations:
+      - 'Earth'
+    :sensors:
+      - :name: 'Moderate Resolution Imaging Spectroradiometer'
+        :abbrev: 'MODIS'
+        :spectra:
+          - :low: 620
+            :high: 670
+          - :low: 841
+            :high: 876
+          - :low: 459
+            :high: 479
+          - :low: 545
+            :high: 565
+          - :low: 1230
+            :high: 1250
+          - :low: 1628
+            :high: 1652
+          - :low: 2105
+            :high: 2155
+          - :low: 405
+            :high: 420
+          - :low: 438
+            :high: 448
+          - :low: 483
+            :high: 493
+          - :low: 526
+            :high: 536
+          - :low: 546
+            :high: 556
+          - :low: 662
+            :high: 672
+          - :low: 673
+            :high: 683
+          - :low: 743
+            :high: 753
+          - :low: 862
+            :high: 877
+          - :low: 890
+            :high: 920
+          - :low: 931
+            :high: 941
+          - :low: 915
+            :high: 965
 
-          #- :low: 375
-          #  :high: 1100
 # Didn't include Mariner 7
 # Didn't include Voyager 1 or 2, which both had Michelson interferometers
 # Didn't include Vega's IKS, which failed.
