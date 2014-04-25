@@ -1166,6 +1166,8 @@
       - :name: 'Narrow Angle Camera'
         :abbrev: 'NAC'
         :detector: 'vidicon, selenium-sulfur, 1-inch'
+        :width: 800
+        :height: 800
         :cite: 'Malin et al., 1992; http://pds-rings.seti.org/voyager/iss/inst_cat_na1.html#filters'
         :spectra:
           - :peak: 346 # UV: wideband, centered at 325
@@ -1188,7 +1190,9 @@
             :high: 640
       - :name: 'Wide Angle Camera'
         :abbrev: 'WAC'
-        :detector: 'vidicon, selenium-sulfur, 1"' # ?
+        :detector: 'vidicon, selenium-sulfur, 1-inch' # ?
+        :width: 800
+        :height: 800
         :cite: 'Malin et al., 1992; http://pds-rings.seti.org/voyager/iss/inst_cat_wa1.html#filters'
         :spectra:
           - :peak: 470 # broadband/clear
