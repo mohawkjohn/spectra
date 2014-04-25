@@ -769,24 +769,50 @@
             :resolution: 20
   - :name: 'Deep Space 1'
     :abbrev: 'DS1'
-    :cite: "Rodgers et al., 2007"
     :launch: 24 October 1998
     :destinations:
       - "19P/Borrelly"
     :sensors:
-      - :name: 'Miniature Integrated Camera and Spectrometer'
-        :abbrev: 'MICAS'
+      - :name: 'Miniature Integrated Camera and Spectrometer: UV Imaging Spectrometer'
+        :abbrev: 'MICAS UV'
+        :cite: "Rodgers et al., 2007"
+        :detector: 'FT CCD'
+        :width: 2048
+        :height: 1024
         :spectra:
           - :low: 80
             :high: 185
             #:resolution: 2.1
-            :resolution: 0.64 # nm (this is actually the sampling)
+            :resolution: 0.64 # nm (this is actually the sampling, resolution is 2.1)
+      - :name: 'Miniature Integrated Camera and Spectrometer: VISCCD Imager'
+        :abbrev: 'MICAS VISCCD'
+        :cite: "Rodgers et al., 2007"
+        :detector: 'FT CCD'
+        :width: 2048
+        :height: 1024
+        :spectra:
           - :low: 500 # APS Imager and VISCCD
             :high: 1000
+      - :name: 'Miniature Integrated Camera and Spectrometer: APS Imager'
+        :abbrev: 'MICAS APS'
+        :cite: "Rodgers et al., 2007"
+        :detector: 'JPL APS 256^2'
+        :width: 256
+        :height: 256
+        :spectra:
+          - :low: 500 # APS Imager and VISCCD
+            :high: 1000
+      - :name: 'Miniature Integrated Camera and Spectrometer: SWIR Image Spectrometer'
+        :abbrev: 'MICAS SWIR'
+        :cite: "Rodgers et al., 2007"
+        :detector: 'PICNIC, Rockwell'
+        :width: 256
+        :height: 256
+        :spectra:
           - :low: 1200 # SWIR image spectrometer
             :high: 2400
             #:resolution: 12
-            :resolution: 6.6 # the sampling
+            :resolution: 6.6 # the sampling (actual resolution is 12)
   - :name: 'Cassini'
     :launch: 15 October 1997
     :destinations:
@@ -985,6 +1011,7 @@
     :launch: 15 October 1997
     :destinations:
       - 'Titan'
+    :sensors:
       - :abbrev: 'DISR ULV'
         :name: 'Descent Imager/Spectral Radiometer: Violet Photometer'
         :cite: 'Tomasko et al., 1997'
