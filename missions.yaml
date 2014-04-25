@@ -820,26 +820,34 @@
         :width: 256
         :spectral-height: 480 # spectral
         :height: 1
-        :type: square pushbroom
+        :type: pushbroom
         :detector: 'CCD 512x512, half used for frame transfer'
         :spectra:
           - :low: 300    # visual
             :high: 1050
             :resolution: 1.46 # sampling
-#      - :abbrev: 'CIRS: Far-IR'
-#        :name: 'Composite Infrared Spectrometer: Far-IR'
-#        :detector: 'Thermopile, 2 pixels'
-#        :spectra:
-#          - :low: 17000 # 600/cm
-#            :high: 1000000  # 10/cm
-#            :inverse-low: 600
-#            :inverse-high: 10
-#            :inverse-resolution: [0.5, 15.5]
-#            :resolution: 47000 # better than
+      - :abbrev: 'CIRS: Far-IR'
+        :name: 'Composite Infrared Spectrometer: Far-IR'
+        :detector: 'Thermopile, 2 pixels'
+        :type: whisk
+        :width: 2
+        :height: 1
+        :cite: 'Flasar et al., 2004'
+        :spectra:
+          - :low: 17000 # 600/cm
+            :high: 1000000  # 10/cm
+            :inverse-low: 600
+            :inverse-high: 10
+            :inverse-resolution: [0.5, 15.5]
+            :resolution: 47000 # better than
             #:resolution: [400, 47000] # 0.5-15.5/cm
       - :abbrev: 'CIRS: Mid-IR 1'
         :name: 'Composite Infrared Spectrometer: Mid-IR 1'
         :detector: 'PV HgCdTe, 1x10'
+        :width: 5
+        :height: 1
+        :type: whisk
+        :cite: 'Flasar et al., 2004'
         :spectra:
           - :low: 7000 # 1400/cm
             :inverse-low: 1400
@@ -862,6 +870,10 @@
       - :abbrev: 'CIRS: Mid-IR 2'
         :name: 'Composite Infrared Spectrometer: Mid-IR 2'
         :detector: 'PC HgCdTe, 1x10'
+        :width: 5 # only half used at a time
+        :height: 1
+        :type: whisk
+        :cite: 'Flasar et al., 2004'
         :spectra:
           - :low: 9100  # 1100/cm
             :inverse-low: 1100
