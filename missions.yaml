@@ -324,7 +324,8 @@
         :abbrev: 'NIRS'
         :detector: 'InGaAs'
         :type: whisk # presumed
-        :width: 64
+        :spectral-width: 64
+        :width: 1
         :height: 1
         :spectra: # InGaAs, 64-channel
           - :low: 750
@@ -689,21 +690,34 @@
     :sensors:
       - :name: 'Visual IR Thermal Imaging Spectrometer, High Spatial Resolution, InfraRed'
         :abbrev: 'VIRTIS-M-IR'
-        :detector: 'HgCdTe (2)'
+        :cite: 'Coradini et al., 2007'
+        :detector: 'HgCdTe 270x436'
+        :spectral-width: 436
+        :width: 270
+        :type: pushbroom
         :spectra:
           - :low: 952.8   # Virtis-M InfraRed. Resolution 100-380, sampling 1.89
             :high: 5059.2
             :resolution: 9.44 # actually, sampling is 9.44, and resolution is 70-360
       - :name: 'Visual IR Thermal Imaging Spectrometer, High Spatial Resolution, Visible'
         :abbrev: 'VIRTIS-M-V'
-        :detector: 'CCD'
+        :cite: 'Coradini et al., 2007'
+        :detector: 'CCD 508x1024'
+        :spectral-width: 500 # guessing
+        :width: 1024
+        :height: 1
+        :type: pushbroom
         :spectra:
           - :low: 220.1   # Virtis-M Visible. Resolution 70-360, sampling 9.44
             :high: 1046.1
             :resolution: 1.89 # actually, sampling is 1.89, and resolution is 100-380
       - :name: 'Visual IR Thermal Imaging Spectrometer, High Spectral Resolution' # not an imaging channel
         :abbrev: 'VIRTIS-H'
-        :detector: 'HgCdTe (2)'
+        :cite: 'Coradini et al., 2007'
+        :detector: 'HgCdTe 270x436'
+        :spectral-width: 436
+        :width: 270
+        :type: pushbroom
         :spectra: # resolution 1300-3000, 0.6 is actually the sampling.
           - :low: 1880
             :high: 2330
@@ -731,6 +745,11 @@
             :resolution: 0.6
       - :name: 'Optical, Spectroscopic, and Infrared Remote Imaging System WAC'
         :abbrev: 'OSIRIS WAC'
+        :cite: 'Keller et al., 2007'
+        :detector: 'CCD 2048x2048'
+        :type: 2d
+        :width: 1024
+        :height: 1024
         :spectra:
           - :peak: 245 # UV: continuum; backup surface spectral reflectance
             :resolution: 15
@@ -760,6 +779,11 @@
             :resolution: 10 # backup surface spectral reflectance
       - :name: "Optical, Spectroscopic, and Infrared Remote Imaging System NAC"
         :abbrev: 'OSIRIS NAC'
+        :cite: 'Keller et al., 2007'
+        :detector: 'CCD 2048x2048'
+        :width: 1024
+        :height: 1024
+        :type: 2d
         :spectra:
           - :peak: 359 # near-UV
             :resolution: 60
@@ -789,8 +813,10 @@
         :abbrev: 'MICAS UV'
         :cite: "Rodgers et al., 2007"
         :detector: 'FT CCD'
-        :width: 2048
-        :height: 1024
+        :spectral-width: 164
+        :width: 35
+        :height: 1
+        :type: pushbroom
         :spectra:
           - :low: 80
             :high: 185
@@ -800,8 +826,9 @@
         :abbrev: 'MICAS VISCCD'
         :cite: "Rodgers et al., 2007"
         :detector: 'FT CCD'
-        :width: 2048
-        :height: 1024
+        :width: 256
+        :height: 256
+        :type: 2d
         :spectra:
           - :low: 500 # APS Imager and VISCCD
             :high: 1000
@@ -811,15 +838,18 @@
         :detector: 'JPL APS 256^2'
         :width: 256
         :height: 256
+        :type: 2d
         :spectra:
           - :low: 500 # APS Imager and VISCCD
             :high: 1000
       - :name: 'Miniature Integrated Camera and Spectrometer: SWIR Image Spectrometer'
         :abbrev: 'MICAS SWIR'
         :cite: "Rodgers et al., 2007"
-        :detector: 'PICNIC, Rockwell'
+        :detector: 'HgCdTe PICNIC, Rockwell'
+        :spectral-width: 256 # some of this must have gone unused? unclear.
         :width: 256
-        :height: 256
+        :height: 1
+        :type: pushbroom
         :spectra:
           - :low: 1200 # SWIR image spectrometer
             :high: 2400
@@ -844,8 +874,9 @@
       - :name: 'Visual and Infrared Mapping Spectrometer, Infrared'
         :abbrev: 'VIMS-IR' # linear array detector; whiskbroom via scanning telescope secondary mirror
         :cite: 'Brown et al., 2004'
-        :width: 256
+        :spectral-width: 256
         :height: 1
+        :width: 1
         :detector: 'InSb 1x256'
         :type: whisk
         :spectra: # FOV is wavelength dependent, as a result.
@@ -867,8 +898,9 @@
       - :abbrev: 'CIRS: Far-IR'
         :name: 'Composite Infrared Spectrometer: Far-IR'
         :detector: 'Thermopile, 2 pixels'
-        :type: whisk
-        :width: 2
+        :type: mono
+        :spectral-width: 2
+        :width: 1
         :height: 1
         :cite: 'Flasar et al., 2004'
         :spectra:
@@ -882,7 +914,8 @@
       - :abbrev: 'CIRS: Mid-IR 1'
         :name: 'Composite Infrared Spectrometer: Mid-IR 1'
         :detector: 'PV HgCdTe, 1x10'
-        :width: 5
+        :spectral-width: 5
+        :width: 1
         :height: 1
         :type: whisk
         :cite: 'Flasar et al., 2004'
@@ -896,7 +929,8 @@
       - :abbrev: 'CIRS: Mid-IR 2'
         :name: 'Composite Infrared Spectrometer: Mid-IR 2'
         :detector: 'PC HgCdTe, 1x10'
-        :width: 5 # only half used at a time
+        :spectral-width: 5 # only half used at a time
+        :width: 1
         :height: 1
         :type: whisk
         :cite: 'Flasar et al., 2004'
@@ -1028,6 +1062,8 @@
         :name: 'Descent Imager/Spectral Radiometer: Violet Photometer'
         :cite: 'Tomasko et al., 1997'
         :type: mono
+        :width: 1
+        :height: 1
         :detector: 'silicon photodiode'
         :spectra:
           - :low: 350    # ULV: Violet Photometer
@@ -1047,8 +1083,10 @@
         :name: 'Descent Imager/Spectral Radiometer: Infrared Spectrometer'
         :cite: 'Tomasko et al., 1997'
         :detector: 'InGaAs, 150-element'
-        :width: 132
+        :spectral-width: 132
+        :width: 1
         :height: 1
+        :type: whisk
         :spectra:
           - :low: 870    # ULIS: Infrared Spectrometer
             :high: 1650
@@ -1223,8 +1261,9 @@
         :abbrev: 'NIS'
         :detector: '32-element Ge'
         :type: whisk
-        :width: 24
         :height: 1
+        :spectral-width: 32
+        :width: 1
         :spectra:
           - :low: 804   # Germanium detector, 32-element
             :high: 1506
@@ -1232,6 +1271,9 @@
       - :name: 'Near-Infrared Spectrometer, InGaAs'
         :abbrev: 'NIS'
         :detector: '32-element InGaAs'
+        :spectral-width: 32
+        :height: 1
+        :width: 1
         :type: whisk
         :spectra:
           - :low: 1348  # InGaAs detector, 32-element
