@@ -515,6 +515,10 @@
     :sensors:
       - :name: 'Near-Infrared Cameras'
         :abbrev: 'NIR1/NIR2'
+        :detector: 'InGaAs 320x240'
+        :type: 2d
+        :width: 320
+        :height: 240
         :spectra:
           - :low: 900     # NIR1 and NIR2
             :high: 1700
@@ -522,7 +526,10 @@
             :high: 1700
       - :name: 'Mid-Infrared Camera 1' # Vanadium oxide microbolometer MIRIC TB2-30
         :abbrev: 'MIR1'
-        :detector:
+        :detector: 'vanadium oxide microbolometer 164x128'
+        :width: 164
+        :height: 128
+        :type: 2d
         :spectra:
           - :low: 6000    # unfiltered
             :high: 13500
@@ -530,6 +537,10 @@
             :high: 10000
       - :name: 'Mid-Infrared Camera 2' # ThermoVision Micron from Flir Systems/Indigo Operations
         :abbrev: 'MIR2'
+        :detector: 'vanadium oxide microbolometer 164x128'
+        :width: 164
+        :height: 128
+        :type: 2d
         :spectra:
           - :low: 6000   # unfiltered
             :high: 13500
@@ -541,24 +552,30 @@
       - :name: 'Visible Spectrometer'
         :abbrev: 'VSP'
         :detector: 'CCD, 1044x64, Hammamatsu'
+        :spectral-width: 1044
+        :height: 1
+        :width: 1
+        :type: linear # I think; no moving parts
         :spectra:
           - :low: 263
             :high: 650
             :resolution: 1 # this actually varies from 1.0 to 0.7nm. Resolving power R~300 at 300nm, R~500 at 400nm, R~850 at 600nm
-#      - :name: 'Near-Infrared Spectrometer 1' # Polychromix  # SINGLE PIXEL
-#        :abbrev: 'NSP1'
-#        :detector: 'InGaAs'
-#        :spectra: # InGaAs
-#          - :low: 1200
-#            :high: 2450
-#            :resolution: 35
-#      - :name: 'Near-Infrared Spectrometer 2' # Polychromix
-#        :abbrev: 'NSP2'
-#        :detector: 'InGaAs'
-#        :spectra:
-#          - :low: 1200
-#            :high: 2450
-#            :resolution: 35
+      - :name: 'Near-Infrared Spectrometer 1' # Polychromix  # SINGLE PIXEL
+        :abbrev: 'NSP1'
+        :detector: 'InGaAs'
+        :type: mono
+        :spectra: # InGaAs
+          - :low: 1200
+            :high: 2450
+            :resolution: 35
+      - :name: 'Near-Infrared Spectrometer 2' # Polychromix
+        :abbrev: 'NSP2'
+        :detector: 'InGaAs'
+        :type: mono
+        :spectra:
+          - :low: 1200
+            :high: 2450
+            :resolution: 35
   - :name: 'Viking'
     :launch: 20 August 1975
     :destinations:
