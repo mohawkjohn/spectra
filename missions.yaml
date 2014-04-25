@@ -147,21 +147,29 @@
         :name: 'Observatoire Mineralogie, Eau, Glaces, Activite: VNIR'
         :snr: '>100'
         :detector: 'CCD (Thomson 7863), 384 spatial by 288 spectral (pushbroom)'
+        :width: 384
+        :spectral-width: 288
+        :height: 1
+        :type: pushbroom
         :spectra: # note: spectral :resolution: can be traded for spatial :resolution:
           - :low: 380
             :high: 1050
-            :resolution: 7
+            :resolution: 7 # sampling
       - :abbrev: 'OMEGA SWIR'
         :name: 'Observatoire Mineralogie, Eau, Glaces, Activite: SWIR'
         :detector: 'InSb, 128 spectels, 2x (whiskbroom 16-128px)'
+        :spectral-width: 128 # or 16
+        :height: 1
+        :width: 8 # actually, it's 2, but dynamic range up to 8
+        :type: whisk # can also work as a small pushbroom at 16x8
         :snr: '>100'
         :spectra:
           - :low: 930
             :high: 2730
-            :resolution: 13
+            :resolution: 13 # sampling
           - :low: 2550
             :high: 5100
-            :resolution: 20
+            :resolution: 20 # sampling
   - :name: 'Chandrayaan-1'
     :agency: 'ISRO'
     :launch: 22 October 2008
@@ -848,7 +856,7 @@
         :abbrev: 'VIMS-VIS' # push-broom, using spacecraft drift or scanning of telescope secondary mirror
         :cite: 'Brown et al., 2004'
         :width: 256
-        :spectral-height: 480 # spectral
+        :spectral-width: 480 # spectral
         :height: 1
         :type: pushbroom
         :detector: 'CCD 512x512, half used for frame transfer'
