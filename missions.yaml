@@ -806,17 +806,26 @@
       - :name: 'Visual and Infrared Mapping Spectrometer, Infrared'
         :abbrev: 'VIMS-IR' # linear array detector; whiskbroom via scanning telescope secondary mirror
         :cite: 'Brown et al., 2004'
+        :width: 256
+        :height: 1
+        :detector: 'InSb 1x256'
+        :type: whisk
         :spectra: # FOV is wavelength dependent, as a result.
           - :low: 850
             :high: 5100
             :resolution: 16.6 # sampling
       - :name: 'Visual and Infrared Mapping Spectrometer, Visible' # Seems that it has to be kept pretty cold?
-        :abbrev: 'VIMS-V' # push-broom, using spacecraft drift or scanning of telescope secondary mirror
+        :abbrev: 'VIMS-VIS' # push-broom, using spacecraft drift or scanning of telescope secondary mirror
         :cite: 'Brown et al., 2004'
+        :width: 256
+        :spectral-height: 480 # spectral
+        :height: 1
+        :type: square pushbroom
+        :detector: 'CCD 512x512, half used for frame transfer'
         :spectra:
           - :low: 300    # visual
             :high: 1050
-            :resolution: 7.33 # sampling
+            :resolution: 1.46 # sampling
 #      - :abbrev: 'CIRS: Far-IR'
 #        :name: 'Composite Infrared Spectrometer: Far-IR'
 #        :detector: 'Thermopile, 2 pixels'
