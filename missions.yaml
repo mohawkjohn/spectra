@@ -357,7 +357,6 @@
             :high: 2250
             :resolution: 23.4 # sampling.
   - :name: 'Dawn'
-    :cite: 'Sierks et al., 2011' # Rayman et al., 2006
     :launch: 27 September 2007
     :destinations:
       - '(4) Vesta'
@@ -365,6 +364,11 @@
     :sensors:
       - :name: 'framing camera'
         :abbrev: 'FC'
+        :cite: 'Sierks et al., 2011; PDS' # Rayman et al., 2006
+        :type: 2d
+        :width: 1024
+        :height: 1024
+        :detector: 'CCD'
         :spectra:
           - :low: 450
             :high: 920
