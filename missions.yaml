@@ -789,7 +789,6 @@
             :resolution: 6.6 # the sampling
   - :name: 'Cassini—Huygens'
     :launch: 15 October 1997
-    :cite: 'Brown et al., 2004'
     :destinations:
       - 'Venus' # VIMS-IR was not operational at Venus, sadly
       - 'Galilean satellites' # see Brown et al., 2003
@@ -806,12 +805,14 @@
     :sensors:
       - :name: 'Visual and Infrared Mapping Spectrometer, Infrared'
         :abbrev: 'VIMS-IR' # linear array detector; whiskbroom via scanning telescope secondary mirror
+        :cite: 'Brown et al., 2004'
         :spectra: # FOV is wavelength dependent, as a result.
           - :low: 850
             :high: 5100
             :resolution: 16.6 # sampling
       - :name: 'Visual and Infrared Mapping Spectrometer, Visible' # Seems that it has to be kept pretty cold?
         :abbrev: 'VIMS-V' # push-broom, using spacecraft drift or scanning of telescope secondary mirror
+        :cite: 'Brown et al., 2004'
         :spectra:
           - :low: 300    # visual
             :high: 1050
@@ -1096,6 +1097,10 @@
     :sensors:
       - :name: 'Multispectral Imager'
         :abbrev: 'MSI'
+        :detector: 'Si CCD, Thomson-CSF TH7866A (four phase)'
+        :type: square
+        :width: 500 # 537 but only 500 used
+        :height: 244
         :spectra:  # passively cooled Si CCD with filter wheel
           - :peak: 450
             :low: 425
@@ -1118,12 +1123,21 @@
           - :peak: 1050
             :low: 1010
             :high: 1090
-      - :name: 'Near-Infrared Spectrometer'
+      - :name: 'Near-Infrared Spectrometer, Ge'
         :abbrev: 'NIS'
+        :detector: '32-element Ge'
+        :type: whisk
+        :width: 24
+        :height: 1
         :spectra:
           - :low: 804   # Germanium detector, 32-element
             :high: 1506
             :resolution: 21.6
+      - :name: 'Near-Infrared Spectrometer, InGaAs'
+        :abbrev: 'NIS'
+        :detector: '32-element InGaAs'
+        :type: whisk
+        :spectra:
           - :low: 1348  # InGaAs detector, 32-element
             :high: 2600
             :resolution: 43.1
@@ -1187,7 +1201,7 @@
         :detector: '15 InSb, 2 Si'
         :width: 20
         :height: 1
-        :type: linear # whisk
+        :type: whisk
         :spectra:
           - :low: 700
             :high: 1000
