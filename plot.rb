@@ -3,11 +3,15 @@ require 'yaml'
 require 'pry'
 require 'date'
 
-WIDTH=900
+WIDTH=500
 
-missions = YAML.load(File.read('missions.yaml'))[:missions]
+resources   = YAML.load(File.read('missions.yaml'))
+missions    = resources[:missions]
+atmospheres = resources[:atmospheres]
+has         = atmospheres.select { |k,v| v == true }.keys
+hasnot      = atmospheres.select { |k,v| v == false }.keys
 
-spectra = Hash.new { |h,k| h[k] = [] }
+spectra     = Hash.new { |h,k| h[k] = [] }
 
 def parse_date d
   if d.is_a?(Fixnum)
@@ -21,10 +25,16 @@ def parse_date d
   end
 end
 
-
 missions.each do |mission|
   unless mission.has_key?(:launch)
     STDERR.puts "Launch date missing for item #{mission.inspect}"
+  end
+
+  # Determine whether we're looking at a place with an atmosphere or not.
+  #binding.pry
+  unless mission[:destinations].nil?
+    no_atmosphere = mission[:destinations] & hasnot
+    next if no_atmosphere.empty?
   end
 
   #puts "mission #{mission.inspect}"
@@ -82,12 +92,14 @@ spectra.each_pair do |key,ary|
 end
 
 spectra = spectra.values.flatten.sort_by { |s| s[:launch] }
+spectra.delete_if { |s| s[:low] > 5000 }
+#binding.pry
 
 data = pdata.name('spectra').values(spectra)
 
 ys = ordinal_scale.name('sensors').from('spectra.mission').to_height
-xs = pow_scale.name('x').from('spectra.mean').exponent(0.1).domain([100,1000000]).range([-600.0, WIDTH.to_f])
-cs = log_scale.name('c').from('spectra.resolution').domain([0.1,1000.0]).range(['red', 'yellow'])
+xs = pow_scale.name('x').from('spectra.mean').exponent(0.4).domain([100,5000]).range([-100.0, WIDTH.to_f])
+cs = log_scale.name('c').from('spectra.resolution').domain([0.1,1000.0]).range(['blue', 'red'])
 rgbs = log_scale.name('rgb').from('spectra.peak').domain([426.3, 529.7, 552.4]).range(['red', 'green', 'blue'])
 
 rm = rect_mark.from(data) do
@@ -97,7 +109,7 @@ rm = rect_mark.from(data) do
     y_start  { scale(ys).from(:mission) }
     height   { scale(ys).offset(-1).use_band }
     fill     { scale(cs).from(:resolution) }
-    fill_opacity 0.7
+    fill_opacity 1.0
     #stroke   { scale(rgbs).from(:peak) }
   end
 end
@@ -115,6 +127,35 @@ end
    end
  end
 
+l = legend do
+  fill cs
+  title "Sampling interval"
+  offset 10
+
+  properties do
+    symbols do
+      fill_opacity 0.6
+    end
+
+    #x WIDTH
+  end
+end
+
+=begin
+"legends": [
+  {
+    "fill": "c",
+    "title": "Sampling interval",
+    "offset": 10,
+    "properties": {
+      "symbols": {
+        "fillOpacity": {"value": 0.5},
+        "stroke": {"value": "transparent"}
+      }
+    }
+  }
+=end
+
 #tm = text_mark.from(data) do
 #  enter do
 #    x { scale(xs).from(:low) }
@@ -128,11 +169,12 @@ end
 
 
 vis = visualization.width(WIDTH).height(600) do
-  padding top: 10, left: 140, bottom: 30, right: 25
+  padding top: 10, left: 140, bottom: 30, right: 200
   data data
   scales xs, ys, cs, rgbs
   marks rm #, tm
-  axes x_axis.scale(xs).values([100,300,600,1000,2500,5000,10000,25000,50000,100000,250000,500000,1000000]), y_axis.scale(ys)
+  legends l
+  axes x_axis.scale(xs).values([100,300,600,1000,2500,5000]), y_axis.scale(ys) #,10000,25000,50000,100000,250000,500000,1000000]), y_axis.scale(ys)
 end
 
 puts vis.generate_spec(:pretty)

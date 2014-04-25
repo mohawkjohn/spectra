@@ -1,4 +1,39 @@
 ---
+:atmospheres:
+  Mars: true
+  Phobos: false
+  Deimos: false
+  Luna: false
+  Charon: false
+  Nix: false
+  Hydra: false
+  '(4) Vesta': false
+  '(1) Ceres': true # probably
+  Pluto: true # probably
+  Earth: true
+  Venus: true
+  Mercury: true
+  'Kuiper belt': false
+  '(25143) Itokawa': false
+  "Halley's Comet": false
+  "(2867) Šteins": false
+  '(21) Lutetia': false
+  '67P/Churyumov-Gerasimenko': false
+  '19P/Borrelly': false
+  Jupiter: true
+  Titan: true
+  Iapetus: false
+  Hyperion: false
+  Phoebe: false
+  Europa: true
+  Ganymede: true
+  Callisto: true # thin
+  Saturn: true
+  Io: true
+  '9P/Tempel 1': false
+  '(253) Mathilde': false
+  '(433) Eros': false
+
 :missions:
   - :name: 'Human photoreceptors'
     :cite: 'Merbs & Nathans, 1992; Dartnall et al., 1983'
@@ -97,6 +132,7 @@
             :high: 43500
             :low: 40800
   - :name: 'Mars Express'
+    :abbrev: 'MEX'
     :agency: 'ESA'
     :launch: 2 June 2003
     :destinations:
@@ -247,27 +283,27 @@
           - :low: 2100 # map Pluto's surface temperature
             :high: 2250
             :resolution: 4.1 # 3.8 for the lowest, I think
-  - :name: 'Hayabusa 2 Mobile Asteroid Surface Scout'
-    :launch: 'future'
-    :abbrev: 'MASCOT'
-    :cite: 'Jaumann et al., 2014'
-    :destinations:
-      - '(25143) Itokawa'
-    :sensors:
-      - :name: 'multispectral radiometer'
-        :spectra:
-          - :low: 5500
-            :high: 7000
-          - :low: 8000
-            :high: 9500
-          - :low: 9500
-            :high: 11500
-          - :low: 13500
-            :high: 15500
-          - :low: 8000
-            :high: 14000
-          - :low: 5000
-            :high: 100000
+#  - :name: 'Hayabusa 2 Mobile Asteroid Surface Scout'
+#    :launch: 'future'
+#    :abbrev: 'MASCOT'
+#    :cite: 'Jaumann et al., 2014'
+#    :destinations:
+#      - '(25143) Itokawa'
+#    :sensors:
+#      - :name: 'multispectral radiometer'
+#        :spectra:
+#          - :low: 5500
+#            :high: 7000
+#          - :low: 8000
+#            :high: 9500
+#          - :low: 9500
+#            :high: 11500
+#          - :low: 13500
+#            :high: 15500
+#          - :low: 8000
+#            :high: 14000
+#          - :low: 5000
+#            :high: 100000
   - :name: 'Hayabusa (MUSES-C)'
     :launch: 9 May 2003
     :cite: 'Kitazato et al., 2008'
@@ -309,6 +345,8 @@
   - :name: 'Landsat 1-3'
     :launch: 23 July 1972, 22 January 1975, 5 March 1978
     :cite: 'Loveland et al., 2012'
+    :destinations:
+      - Earth
     :sensors:
       - :name: 'Return Beam Vidicon'
         :detector: 'vidicon'
@@ -336,6 +374,8 @@
   - :name: 'Landsat 4-5'
     :launch: 16 July 1982, 1 March 1984
     :cite: 'Loveland et al., 2012'
+    :destinations:
+      - Earth
     :sensors:
       - :name: 'Multispectral Scanner'
         :abbrev: 'MSS'
@@ -353,6 +393,8 @@
   - :name: 'Landsat 7 (and 6)'
     :cite: 'Loveland et al., 2012'
     :launch: 5 October 1993; 15 April 1999
+    :destinations:
+      - Earth
     :sensors:
       - :name: 'Enhanced Thematic Mapper Plus'
         :abbrev: 'ETM+'
@@ -376,6 +418,8 @@
   - :name: 'Landsat 8'
     :cite: 'Loveland et al., 2012'
     :launch: 11 February 2013
+    :destinations:
+      - Earth
     :sensors:
       - :name: 'Operational Land Imager'
         :abbrev: 'OLI'
@@ -421,6 +465,7 @@
             :high: 1700
       - :name: 'Mid-Infrared Camera 1' # Vanadium oxide microbolometer MIRIC TB2-30
         :abbrev: 'MIR1'
+        :detector:
         :spectra:
           - :low: 6000    # unfiltered
             :high: 13500
@@ -431,11 +476,11 @@
         :spectra:
           - :low: 6000   # unfiltered
             :high: 13500
-      - :name: 'Total Luminance Photometer'
-        :abbrev: 'TLP'
-        :spectra:
-          - :low: 400
-            :high: 1000
+#      - :name: 'Total Luminance Photometer'
+#        :abbrev: 'TLP'
+#        :spectra:
+#          - :low: 400
+#            :high: 1000
       - :name: 'Visible Spectrometer'
         :abbrev: 'VSP'
         :detector: 'CCD, 1044x64, Hammamatsu'
@@ -443,18 +488,20 @@
           - :low: 263
             :high: 650
             :resolution: 1 # this actually varies from 1.0 to 0.7nm. Resolving power R~300 at 300nm, R~500 at 400nm, R~850 at 600nm
-      - :name: 'Near-Infrared Spectrometer 1' # Polychromix
-        :abbrev: 'NSP1'
-        :spectra: # InGaAs
-          - :low: 1200
-            :high: 2450
-            :resolution: 34 # less than 34 (as low as 19)
-      - :name: 'Near-Infrared Spectrometer 2' # Polychromix
-        :abbrev: 'NSP2'
-        :spectra:
-          - :low: 1200
-            :high: 2450
-            :resolution: 35 # as low as 16
+#      - :name: 'Near-Infrared Spectrometer 1' # Polychromix  # SINGLE PIXEL
+#        :abbrev: 'NSP1'
+#        :detector: 'InGaAs'
+#        :spectra: # InGaAs
+#          - :low: 1200
+#            :high: 2450
+#            :resolution: 35
+#      - :name: 'Near-Infrared Spectrometer 2' # Polychromix
+#        :abbrev: 'NSP2'
+#        :detector: 'InGaAs'
+#        :spectra:
+#          - :low: 1200
+#            :high: 2450
+#            :resolution: 35
   - :name: 'Viking'
     :launch: 20 August 1975
     :destinations:
@@ -551,9 +598,65 @@
           - :low: 837  # IR2
             :high: 882
             :peak: 860
-  - :name: 'Rosetta Orbiter, Venus Express'
-    :abbrev: 'Rosetta/Venus Expr'
-    :launch: 9 November 2005, 2 March 2004
+  - :name: 'Venus Express'
+    :abbrev: 'VEX'
+    :launch: 9 November 2005
+    :destinations:
+      - 'Earth'
+      - 'Venus'
+    :sensors:
+      - :name: 'Venus Monitoring Camera'
+        :abbrev: 'VMC'
+        :detector: 'CCD'
+        :cite: 'Markiewicz et al., 2007'
+        :spectra:
+          - :peak: 365
+            :resolution: 40
+          - :peak: 513
+            :resolution: 50
+          - :peak: 965
+            :resolution: 40
+          - :peak: 1000
+            :resolution: 40
+      - :name: 'Visual IR Thermal Imaging Spectrometer, High Spatial Resolution, InfraRed'
+        :abbrev: 'VIRTIS-M-IR'
+        :detector: 'HgCdTe (2)'
+        :cite: 'Piccioni et al., 2008'
+        :spectra:
+          - :low: 1050   # Virtis-M InfraRed. Resolution 100-380, sampling 1.89
+            :high: 5130
+            :resolution: 9.47 # actually, sampling is 9.44, and resolution is 70-360
+      - :name: 'Visual IR Thermal Imaging Spectrometer, High Spatial Resolution, Visible'
+        :abbrev: 'VIRTIS-M-V'
+        :detector: 'CCD'
+        :cite: 'Piccioni et al., 2008'
+        :spectra:
+          - :low: 280   # Virtis-M Visible. Resolution 70-360, sampling 9.44
+            :high: 1100
+            :resolution: 1.89 # actually, sampling is 1.89, and resolution is 100-380
+      - :name: 'Visual IR Thermal Imaging Spectrometer, High Spectral Resolution' # not an imaging channel
+        :abbrev: 'VIRTIS-H'
+        :detector: 'HgCdTe (2)'
+        :cite: 'Piccioni et al., 2008'
+        :spectra: # resolution 1300-3000, 0.6 is actually the sampling.
+          - :low: 1840
+            :high: 4990
+            :resolution: 0.6
+      - :abbrev: 'SPICAV'
+        :cite: 'Bertaux et al., 2007'
+        :spectra:
+          - :low: 118  # UV
+            :high: 320
+            :resolution: 0.55 # nm per pixel (actually sampling)
+            #:resolution: 1.5
+          - :low: 700
+            :high: 1700
+            :resolution: 0.8
+          - :low: 2400
+            :high: 4000
+            :resolution: 1.8 # down to 0.24nm at 2400nm; 0.32-0.15 cm^-1 was quantity listed in paper.
+  - :name: 'Rosetta Orbiter'
+    :launch: 2 March 2004
     :cite: 'Coradini et al., 2007'
     :destinations:
       - 'Earth'
@@ -562,15 +665,48 @@
       - '(21) Lutetia'
       - '67P/Churyumov-Gerasimenko'
     :sensors:
-      - :name: 'Visual IR Thermal Imaging Spectrometer'
-        :abbrev: 'VIRTIS-M'
+      - :name: 'Visual IR Thermal Imaging Spectrometer, High Spatial Resolution, InfraRed'
+        :abbrev: 'VIRTIS-M-IR'
+        :detector: 'HgCdTe (2)'
         :spectra:
-          - :low: 220.1   # Virtis-M Visible
-            :high: 1046.1
-            :resolution: 100
-          - :low: 952.8
+          - :low: 952.8   # Virtis-M InfraRed. Resolution 100-380, sampling 1.89
             :high: 5059.2
-            :resolution: 100
+            :resolution: 9.44 # actually, sampling is 9.44, and resolution is 70-360
+      - :name: 'Visual IR Thermal Imaging Spectrometer, High Spatial Resolution, Visible'
+        :abbrev: 'VIRTIS-M-V'
+        :detector: 'CCD'
+        :spectra:
+          - :low: 220.1   # Virtis-M Visible. Resolution 70-360, sampling 9.44
+            :high: 1046.1
+            :resolution: 1.89 # actually, sampling is 1.89, and resolution is 100-380
+      - :name: 'Visual IR Thermal Imaging Spectrometer, High Spectral Resolution' # not an imaging channel
+        :abbrev: 'VIRTIS-H'
+        :detector: 'HgCdTe (2)'
+        :spectra: # resolution 1300-3000, 0.6 is actually the sampling.
+          - :low: 1880
+            :high: 2330
+            :resolution: 0.6
+          - :low: 2030
+            :high: 2530
+            :resolution: 0.6
+          - :low: 2210
+            :high: 2760
+            :resolution: 0.6
+          - :low: 2430
+            :high: 3030
+            :resolution: 0.6
+          - :low: 2700
+            :high: 3370
+            :resolution: 0.6
+          - :low: 3040
+            :high: 3780
+            :resolution: 0.6
+          - :low: 3470
+            :high: 4320
+            :resolution: 0.6
+          - :low: 4050
+            :high: 5030
+            :resolution: 0.6
       - :name: 'Optical, Spectroscopic, and Infrared Remote Imaging System WAC'
         :abbrev: 'OSIRIS WAC'
         :spectra:
@@ -626,21 +762,21 @@
     :cite: "Rodgers et al., 2007"
     :launch: 24 October 1998
     :destinations:
-      - "Borrelly"
+      - "19P/Borrelly"
     :sensors:
       - :name: 'Miniature Integrated Camera and Spectrometer'
         :abbrev: 'MICAS'
         :spectra:
           - :low: 80
             :high: 185
-            :resolution: 2.1
-            interval: 0.64 # nm (what is this?)
+            #:resolution: 2.1
+            :resolution: 0.64 # nm (this is actually the sampling)
           - :low: 500 # APS Imager and VISCCD
             :high: 1000
           - :low: 1200 # SWIR image spectrometer
             :high: 2400
-            :resolution: 12
-            interval: 6.6
+            #:resolution: 12
+            :resolution: 6.6 # the sampling
   - :name: 'Cassini—Huygens'
     :launch: 15 October 1997
     :cite: 'Brown et al., 2004'
@@ -652,10 +788,10 @@
       - 'Iapetus'
       - 'Hyperion'
       - 'Phoebe'
-      - 'Titan'
       - 'Europa'
+      - 'Io'
       - 'Ganymede'
-      - 'Castillo'
+      - 'Callisto'
       - 'Saturn'
     :sensors:
       - :name: 'Visual and Infrared Mapping Spectrometer, Infrared'
@@ -663,23 +799,23 @@
         :spectra: # FOV is wavelength dependent, as a result.
           - :low: 850
             :high: 5100
-            :resolution: 16.6
+            :resolution: 16.6 # sampling
       - :name: 'Visual and Infrared Mapping Spectrometer, Visible' # Seems that it has to be kept pretty cold?
         :abbrev: 'VIMS-V' # push-broom, using spacecraft drift or scanning of telescope secondary mirror
         :spectra:
           - :low: 300    # visual
             :high: 1050
-            :resolution: 7.33 # a couple different numbers here. it says to see Capaccioni et al., 1998
-      - :abbrev: 'CIRS: Far-IR'
-        :name: 'Composite Infrared Spectrometer: Far-IR'
-        :detector: 'Thermopile, 2 pixels'
-        :spectra:
-          - :low: 17000 # 600/cm
-            :high: 1000000  # 10/cm
-            :inverse-low: 600
-            :inverse-high: 10
-            :inverse-resolution: [0.5, 15.5]
-            :resolution: 47000 # better than
+            :resolution: 7.33 # sampling
+#      - :abbrev: 'CIRS: Far-IR'
+#        :name: 'Composite Infrared Spectrometer: Far-IR'
+#        :detector: 'Thermopile, 2 pixels'
+#        :spectra:
+#          - :low: 17000 # 600/cm
+#            :high: 1000000  # 10/cm
+#            :inverse-low: 600
+#            :inverse-high: 10
+#            :inverse-resolution: [0.5, 15.5]
+#            :resolution: 47000 # better than
             #:resolution: [400, 47000] # 0.5-15.5/cm
       - :abbrev: 'CIRS: Mid-IR 1'
         :name: 'Composite Infrared Spectrometer: Mid-IR 1'
@@ -823,6 +959,8 @@
     :abbrev: 'PFES'
     :launch: 1986
     :cite: 'Hoover & Kahle, 1986'
+    :destinations:
+      - Earth
     :sensors:
       - :name: 'Portable Field Emission Spectrometer'
         :abbrev: 'PFES'
@@ -847,12 +985,13 @@
             :low: 8000
             :high: 9500
   - :name: 'Lunar Reconaissance Orbiter'
-    :launch: 18 June 1009
+    :launch: 18 June 2009
     :abbrev: 'LRO'
     :cite: 'Paige et al., 2009'
     :sensors:
       - :name: 'Diviner Lunar Radiometer Experiment'
         :abbrev: 'Diviner'
+        :detector: 'thermopile, 9 21-element'
         :spectra:
           - :low: 350   # channels 1-2:high sensitivity and reduced sensitivity solar radiation
             :high: 2800
@@ -927,6 +1066,8 @@
     :launch: 2003 # June and July
     :abbrev: 'MER'
     :cite: 'Christensen et al., 2003'
+    :destinations:
+      - Mars
     :sensors:
       - :name: 'Miniature Thermal Emission Spectrometer'
         :abbrev: 'Mini-TES'
@@ -997,7 +1138,6 @@
       - 'Venus'
       - 'Luna'
       - 'Earth'
-      - 'some asteroids?'
       - 'Jupiter'
       - 'Jovian satellites'
     :cite: 'Belton et al., 1992'
