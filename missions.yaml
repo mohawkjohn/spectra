@@ -33,6 +33,8 @@
   '9P/Tempel 1': false
   '(253) Mathilde': false
   '(433) Eros': false
+  '(951) Gaspra': false
+  '(243) Ida': false
 
 :missions:
   - :name: 'Human photoreceptors'
@@ -1145,20 +1147,24 @@
     :destinations:
       - 'Venus'
       - 'Luna'
-      - 'Earth'
+      - 'Earth' # Yes, a flyby with actual science goals.
+      - '(243) Ida'
+      - '(951) Gaspra'
       - 'Jupiter'
+      - 'Callisto'
+      - 'Ganymede'
+      - 'Europa'
+      - 'Io'
       - 'Jovian satellites'
-    :cite: 'Belton et al., 1992'
     :sensors:
       - :name: 'Solid State Imaging Experiment'
         :abbrev: 'SSI'
         :detector: 'Silicon Virtual Phase CCD'
+        :cite: 'Belton et al., 1992'
         :type: square
         :width: 800
         :height: 800
         :spectra: # only reduced from previous missions in 350-375 region; filter wheel inherited from Voyager
-          - :peak: 611
-            :resolution: 440
           - :peak: 404 # violet - Voyager compatibility - broad
             :resolution: 45
           - :peak: 559 # green  - Voyager compatibility - broad
@@ -1173,6 +1179,22 @@
             :resolution: 19
           - :peak: 986 # Near-Infrared Mapping Spectrometer (NIMS) overlap, and electronic absorption features (Fe-bearing minerals)
             :resolution: 50
+          - :peak: 611
+            :resolution: 440
+      - :name: 'Near-Infrared Mapping Spectrometer'
+        :abbrev: NIMS
+        :cite: 'Carlson et al., 1992'
+        :detector: '15 InSb, 2 Si'
+        :width: 20
+        :height: 1
+        :type: linear # whisk
+        :spectra:
+          - :low: 700
+            :high: 1000
+            :resolution: 125
+          - :low: 1000
+            :high: 5200
+            :resolution: 250
   - :name: 'Voyager 1: Voyager Imaging Experiment'
     :abbrev: 'Voyager 1'
     :launch: 1977 September 5
