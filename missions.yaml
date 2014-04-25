@@ -15,7 +15,7 @@
   Mercury: true
   'Kuiper belt': false
   '(25143) Itokawa': false
-  "Halley's Comet": false
+  '1P/Halley': false
   "(2867) Šteins": false
   '(21) Lutetia': false
   '67P/Churyumov-Gerasimenko': false
@@ -530,16 +530,24 @@
     :launch: 15 December 1984
     :cite: 'Combes et al., 1988'
     :destinations:
-      - "Halley's Comet"
+      - "1P/Halley"
     :sensors:
       - :name: 'IKS Long-wavelength spectroscopic channel'
         :abbrev: 'IKS LSC'
+        :detector: 'HgCdTe monodetector'
+        :width: 1
+        :height: 1
+        :type: mono
         :spectra:
           - :low: 6000
             :high: 12000
             :resolution: 160
       - :name: 'IKS Short-wavelength spectroscopic channel'
         :abbrev: 'IKS SSC'
+        :detector: 'InSb monodetector'
+        :width: 1
+        :height: 1
+        :type: mono
         :spectra:
           - :low: 2400
             :high: 4900
@@ -1168,6 +1176,7 @@
         :detector: 'vidicon, selenium-sulfur, 1-inch'
         :width: 800
         :height: 800
+        :type: square
         :cite: 'Malin et al., 1992; http://pds-rings.seti.org/voyager/iss/inst_cat_na1.html#filters'
         :spectra:
           - :peak: 346 # UV: wideband, centered at 325
@@ -1227,7 +1236,7 @@
     :sensors:
       - :name: 'Mars Orbiter Camera'
         :abbrev: 'MOC'
-        :type: 'push-broom'
+        :type: linear
         :detector: 'CCD linear (push-broom)'
       - :name: 'Thermal Emission Spectrometer'
         :abbrev: 'TES'
@@ -1379,7 +1388,6 @@
 
 # Didn't include Mariner 7
 # Didn't include Voyager 1 or 2, which both had Michelson interferometers
-# Didn't include Vega's IKS, which failed.
 # Didn't include Mariner 9, which had a Michelson interferometer and an infrared spectrometer
 # Don't have TIMS, which flew aboard C-130, because it's another Earth test.
 # Galileo has a Si CCD 404-986nm, 800x800! Cool. Filter wheel. Probably not worth it.
