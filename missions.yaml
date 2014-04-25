@@ -111,7 +111,9 @@
         :name: 'Mars Climate Sounder'
         :cite: 'McCleese et al., 2007'
         :cooling: 'none'
-        :type: unclear
+        :type: pushbroom # based on LRO being a pushbroom
+        :width: 21
+        :height: 1
         :detector: 'nine 21-element linear thermopile arrays'
         :spectra: # This one was SO damn annoying. Everything was in inverse cm instead of wavelengths.
           - :peak: 16500   # temperature 20-40km
@@ -1184,20 +1186,29 @@
     :sensors:
       - :name: 'Long-wave Infrared Camera' # thermal only, apparently
         :abbrev: 'LWIR' # HgCdTe FPA, 128x128
+        :detector: 'HgCdTe array, 128x128'
+        :type: 2d
+        :width: 128
+        :height: 128
         :spectra:
           - :peak: 8750
             :low: 8000
             :high: 9500
-  - :name: 'Lunar Reconaissance Orbiter'
+  - :name: 'Lunar Reconnaissance Orbiter'
     :launch: 18 June 2009
     :abbrev: 'LRO'
     :cite: 'Paige et al., 2009'
     :sensors:
       - :name: 'Diviner Lunar Radiometer Experiment'
         :abbrev: 'Diviner'
-        :detector: 'thermopile, 9 21-element'
+        :detector: 'thermopile, 9 21-element, each with a separate filter'
+        :width: 21
+        :height: 1
+        :type: pushbroom
         :spectra:
           - :low: 350   # channels 1-2:high sensitivity and reduced sensitivity solar radiation
+            :high: 2800
+          - :low: 350
             :high: 2800
           - :low: 7550  # Christiansen
             :high: 8050
