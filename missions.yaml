@@ -183,24 +183,37 @@
     :launch: 22 October 2008
     :destinations:
       - 'Luna'
-    :cite: 'Pieters et al., 2009'
     :sensors:
       - :abbrev: 'HySI'
         :name: 'Hyperspectral Imager'
+        :width: 512
+        :spectral-width: 512
+        :height: 1
+        :type: pushbroom
+        :cite: 'Kiran Kumar et al., 2009'
         :spectra:
-          - :low: 400
-            :high: 950
+          - :low: 421
+            :high: 964
             :resolution: 15
       - :abbrev: 'M3'
         :name: 'Moon Mineralogy Mapper'
+        :cite: 'Pieters et al., 2009'
         :detector: 'HgCdTe array, 2D'
+        :type: pushbroom
+        :spectral-width: 260
+        :width: 600
+        :height: 1
         :spectra:
           - :low: 405 # channels below 434 may be below required SNR
             :high: 3000
             :resolution: 10
       - :abbrev: 'SIR-2'
         :name: 'Near Infrared Spectrometer'
-        :detector: 'linear CCD array'
+        :detector: 'linear InGaAs photodiode array'
+        :type: mono or whisk # unclear
+        :spectral-width: 256
+        :width: 1
+        :height: 1
         :spectra:
           - :low: 900
             :high: 2400
