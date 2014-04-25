@@ -1160,14 +1160,23 @@
     :destinations:
       - '9P/Tempel 1'
     :sensors: # both HRI-VIS and MRI use a CCD of common design
-      - :abbrev: 'HRI-IR' # HgCdTe CMOS
+      - :abbrev: 'HRI-IR'
+        :detector: 'HgCdTe 1024x1024'
         :name: 'High Resolution Instrument, Infrared'
+        :width: 512
+        :height: 1
+        :spectral-width: 1024
+        :type: pushbroom
+        :cite: 'Klaasen et al., 2008'
         :spectra:
           - :low: 1000
             :high: 4800
-            :resolution: 0.2 # actually, significantly better--concerned this is wrong.
+            :resolution: 4 # guessing
       - :abbrev: 'HRI-VIS'
         :name: 'High Resolution Instrument, Visible'
+        :type: 2d
+        :width: 1024
+        :height: 512
         :spectra:
           - :low: 340
             :peak: 650
@@ -1189,6 +1198,10 @@
             :resolution: 100
       - :abbrev: 'MRI'
         :name: 'Medium Resolution Instrument'
+        :type: 2d
+        :width: 1024
+        :height: 1024
+        :detector: 'CCD 1024x1024'
         :spectra:
           - :low: 340 # 320?
             :peak: 650
