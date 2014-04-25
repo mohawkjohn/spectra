@@ -84,7 +84,11 @@
     :sensors:
       - :abbrev: 'CRISM VNIR'
         :detector: 'silicon photodiodes, 640 spatial x 480 spectral'
-        cooling: active # three RICOR K508 Integral Sterling cryocoolers
+        :type: pushbroom
+        :spectral-width: 480
+        :width: 640
+        :height: 1
+        :cooling: active # three RICOR K508 Integral Sterling cryocoolers
         :name: 'Compact Reconaissance Imaging Spectrometer for Mars, Visible-Near Infrared'
         :cite: 'Murchie et al., 2007'
         :spectra:
@@ -93,7 +97,10 @@
             :resolution: 6.55 # nm # sampling
       - :abbrev: 'CRISM IR'
         :detector: 'HgCdTe, 640 spatial x 480 spectral'
-        cooling: 'active' # three RICOR K508 Integral Sterling cryocoolers
+        :spectral-width: 480
+        :width: 640
+        :height: 1
+        :cooling: 'active' # three RICOR K508 Integral Sterling cryocoolers
         :name: 'Compact Reconaissance Imaging Spectrometer for Mars, Infrared'
         :cite: 'Murchie et al., 2007'
         :spectra:
@@ -103,7 +110,8 @@
       - :abbrev: 'MCS'
         :name: 'Mars Climate Sounder'
         :cite: 'McCleese et al., 2007'
-        cooling: 'none'
+        :cooling: 'none'
+        :type: unclear
         :detector: 'nine 21-element linear thermopile arrays'
         :spectra: # This one was SO damn annoying. Everything was in inverse cm instead of wavelengths.
           - :peak: 16500   # temperature 20-40km
@@ -260,7 +268,6 @@
           - :peak: 1010
             :resolution: 20
   - :name: 'New Horizons'
-    :cite: 'Reuter et al., 2008'
     :launch: 19 January 2006
     :destinations:
       - 'Pluto'
@@ -270,6 +277,12 @@
       - 'Kuiper Belt'
     :sensors:
       - :name: 'Ralph Multi-spectral Visible Imaging Camera'
+        :cite: 'Reuter et al., 2008'
+        :type: pushbroom # actually, a little different, but works similarly
+        :detector: 'CCD 5024x32 - seven of them'
+        :spectral-width: 4
+        :width: 5024
+        :height: 1
         :abbrev: 'MVIC'
         :spectra:
           - :low: 400
@@ -281,18 +294,30 @@
           - :low: 540
             :high: 700
             :resolution: 160
+          - :low: 860      # narrow band methane
+            :high: 910
+            :resolution: 50
           - :low: 780
             :high: 975
             :resolution: 195
+          - :low: 400      # panchromatic
+            :high: 975
+            :resolution: 575
       - :name: 'Ralph Linear Etalon Imaging Spectral Array'
         :abbrev: 'LEISA' # HgCdTe detector # frosts of methane, nitrogen, carbon monoxide, water
+        :cite: 'Reuter et al., 2008'
+        :detector: 'HgCdTe (PICNIC)'
+        :type: pushbroom
+        :spectral-width: 256
+        :width: 256
+        :height: 1
         :spectra:
           - :low: 1250 # map surface composition of Pluto/Charon
             :high: 2100
-            :resolution: 10 # 5 for the lowest, 10 for the highest (lambda/delta lambda >= 250)
+            :resolution: 6.5 # 5 for the lowest, 10 for the highest (lambda/delta lambda >= 250)
           - :low: 2100 # map Pluto's surface temperature
             :high: 2250
-            :resolution: 4.1 # 3.8 for the lowest, I think
+            :resolution: 3.7 # 3.8 for the lowest, I think
 #  - :name: 'Hayabusa 2 Mobile Asteroid Surface Scout'
 #    :launch: 'future'
 #    :abbrev: 'MASCOT'
