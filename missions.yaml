@@ -1210,9 +1210,6 @@
           - :peak: 346 # UV: wideband, centered at 325
             :low: 280
             :high: 370
-          - :peak: 497 # broadband/clear
-            :low: 280
-            :high: 640
           - :peak: 416 # violet: wideband
             :low: 350
             :high: 450
@@ -1224,6 +1221,9 @@
             :high: 640
           - :peak: 566 # green
             :low: 530
+            :high: 640
+          - :peak: 497 # broadband/clear
+            :low: 280
             :high: 640
       - :name: 'Wide Angle Camera'
         :abbrev: 'WAC'

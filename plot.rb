@@ -109,7 +109,7 @@ rm = rect_mark.from(data) do
     y_start  { scale(ys).from(:mission) }
     height   { scale(ys).offset(-1).use_band }
     fill     { scale(cs).from(:resolution) }
-    fill_opacity 1.0
+    fill_opacity 0.5
     #stroke   { scale(rgbs).from(:peak) }
   end
 end
