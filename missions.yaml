@@ -1152,7 +1152,13 @@
     :sensors:
       - :name: 'Solid State Imaging Experiment'
         :abbrev: 'SSI'
+        :detector: 'Silicon Virtual Phase CCD'
+        :type: square
+        :width: 800
+        :height: 800
         :spectra: # only reduced from previous missions in 350-375 region; filter wheel inherited from Voyager
+          - :peak: 611
+            :resolution: 440
           - :peak: 404 # violet - Voyager compatibility - broad
             :resolution: 45
           - :peak: 559 # green  - Voyager compatibility - broad
