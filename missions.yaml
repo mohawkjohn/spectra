@@ -787,7 +787,7 @@
             :high: 2400
             #:resolution: 12
             :resolution: 6.6 # the sampling
-  - :name: 'Cassini—Huygens'
+  - :name: 'Cassini'
     :launch: 15 October 1997
     :destinations:
       - 'Venus' # VIMS-IR was not operational at Venus, sadly
@@ -855,18 +855,6 @@
             :resolution: 130 # to 80
             :inverse-high: 1100
             :inverse-resolution: [0.53, 15.5] # 0.53-15.5/cm
-      - :abbrev: 'DISR'
-        :name: 'Descent Imager/Spectral Radiometer'
-        :cite: 'Tomasko et al., 1997'
-        :spectra:
-          - :low: 350    # ULV: Violet Photometer
-            :high: 480
-          - :low: 480    # ULVS: Visible Spectrometer
-            :high: 960
-          - :low: 660    # Imagers (3, downward-looking)
-            :high: 1000
-          - :low: 870    # ULIS: Infrared Spectrometer
-            :high: 1700
       - :abbrev: 'CIRS: Mid-IR 2'
         :name: 'Composite Infrared Spectrometer: Mid-IR 2'
         :detector: 'PC HgCdTe, 1x10'
@@ -884,6 +872,9 @@
       - :name: 'Imaging Science Subsystem NAC'
         :detector: 'CCD 1024x1024# three-phase, front-side illuminated'
         :abbrev: 'ISS NAC'
+        :width: 1024
+        :height: 1024
+        :type: 2d
         :cite: 'Porco et al., 2004' # Note: Had to extract bandpasses from the plot manually
         :spectra: # 12 x 2 filter wheels # bandpass types are given in the paper for each filter but not described, thus don't know :resolution:
           - :peak: 264 # aerosols    # 258W
@@ -946,6 +937,9 @@
       - :name: 'Imaging Science Subsystem WAC'
         :abbrev: 'ISS WAC'
         :cite: 'Porco et al., 2004'
+        :width: 1024
+        :height: 1024
+        :type: 2d
         :spectra: # 9 x 2 filter wheels
           - :peak: 420 # broad-band color
             :low:  415
@@ -987,6 +981,48 @@
             :resolution: 50 # a guess
           - :peak: 1027 # Broad-band color
             :resolution: 30 # a guess
+  - :name: 'Huygens'
+    :launch: 15 October 1997
+    :destinations:
+      - 'Titan'
+      - :abbrev: 'DISR ULV'
+        :name: 'Descent Imager/Spectral Radiometer: Violet Photometer'
+        :cite: 'Tomasko et al., 1997'
+        :type: mono
+        :detector: 'silicon photodiode'
+        :spectra:
+          - :low: 350    # ULV: Violet Photometer
+            :high: 480
+      - :abbrev: 'DISR ULVS'
+        :name: 'Descent Imager/Spectral Radiometer: Visible Spectrometer'
+        :cite: 'Tomasko et al., 1997'
+        :detector: 'CCD silicon 512x520 split into 9 regions, half used for imaging, half for memory'
+        :height: 28 # 20 for downward-looking and 8 for upward-looking
+        :width: 200
+        :type: special
+        :spectra:
+          - :low: 480    # Imagers (3, downward-looking)
+            :high: 960
+            :resolution: 2.4 # spectral scale (nm/pixel)
+      - :abbrev: 'DISR ULIS'
+        :name: 'Descent Imager/Spectral Radiometer: Infrared Spectrometer'
+        :cite: 'Tomasko et al., 1997'
+        :detector: 'InGaAs, 150-element'
+        :width: 132
+        :height: 1
+        :spectra:
+          - :low: 870    # ULIS: Infrared Spectrometer
+            :high: 1650
+            :resolution: 6.3 # spectral scale (nm/pixel)
+      - :abbrev: 'DISR HRI'
+        :name: 'Descent Imager/Spectral Radiometer: Imagers'
+        :cite: 'Tomasko et al., 1997'
+        :detector: 'part of CCD for ULVS'
+        :height: 256
+        :width: 464 # 160 for HRI, 176 for MRI, 128 for SLI
+        :spectra:
+          - :low: 660    # ULIS: Infrared Spectrometer
+            :high: 1000
   - :name: 'Portable Field Emission Spectrometer' # Note: This just collects spectra, no images or even lines.
     :abbrev: 'PFES'
     :launch: 1986
@@ -1119,7 +1155,7 @@
       - :name: 'Multispectral Imager'
         :abbrev: 'MSI'
         :detector: 'Si CCD, Thomson-CSF TH7866A (four phase)'
-        :type: square
+        :type: 2d
         :width: 500 # 537 but only 500 used
         :height: 244
         :spectra:  # passively cooled Si CCD with filter wheel
@@ -1196,7 +1232,7 @@
         :abbrev: 'SSI'
         :detector: 'Silicon Virtual Phase CCD'
         :cite: 'Belton et al., 1992'
-        :type: square
+        :type: 2d
         :width: 800
         :height: 800
         :spectra: # only reduced from previous missions in 350-375 region; filter wheel inherited from Voyager
@@ -1239,7 +1275,7 @@
         :detector: 'vidicon, selenium-sulfur, 1-inch'
         :width: 800
         :height: 800
-        :type: square
+        :type: 2d
         :cite: 'Malin et al., 1992; http://pds-rings.seti.org/voyager/iss/inst_cat_na1.html#filters'
         :spectra:
           - :peak: 346 # UV: wideband, centered at 325
@@ -1299,7 +1335,7 @@
     :sensors:
       - :name: 'Mars Orbiter Camera'
         :abbrev: 'MOC'
-        :type: linear
+        :type: pushbroom
         :detector: 'CCD linear (push-broom)'
       - :name: 'Thermal Emission Spectrometer'
         :abbrev: 'TES'
