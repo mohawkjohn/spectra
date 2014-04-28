@@ -3,6 +3,7 @@ require 'yaml'
 require 'pry'
 require 'date'
 
+HEIGHT=600
 WIDTH=500
 
 resources   = YAML.load(File.read('missions.yaml'))
@@ -44,7 +45,8 @@ missions.each do |mission|
       sensor[:spectra].each do |spectrum|
         spectra[sensor[:abbrev] || sensor[:name]] << spectrum.merge({
           :mission => (mission[:abbrev] || mission[:name]),
-          :launch  => parse_date(mission[:launch])
+          :launch  => parse_date(mission[:launch]),
+          :width   => sensor[:width] || 1024
         })
       end
     else
@@ -101,13 +103,15 @@ ys = ordinal_scale.name('sensors').from('spectra.mission').to_height
 xs = pow_scale.name('x').from('spectra.mean').exponent(0.4).domain([100,5000]).range([-100.0, WIDTH.to_f])
 cs = log_scale.name('c').from('spectra.resolution').domain([0.1,1000.0]).range(['blue', 'red'])
 rgbs = log_scale.name('rgb').from('spectra.peak').domain([426.3, 529.7, 552.4]).range(['red', 'green', 'blue'])
+#binding.pry
+ws = log_scale.name('w').from('spectra.width').domain([1,5024]).range([1.0, HEIGHT / spectra.map { |s| s[:mission] }.sort.uniq.size.to_f - 5.0])
 
 rm = rect_mark.from(data) do
   enter do
     x_start  { scale(xs).from(:low) }
     x_end    { scale(xs).from(:high)}
     y_start  { scale(ys).from(:mission) }
-    height   { scale(ys).offset(-1).use_band }
+    height   { scale(ws).from(:width) }
     fill     { scale(cs).from(:resolution) }
     fill_opacity 0.5
     #stroke   { scale(rgbs).from(:peak) }
@@ -168,10 +172,10 @@ end
 #end
 
 
-vis = visualization.width(WIDTH).height(600) do
+vis = visualization.width(WIDTH).height(HEIGHT) do
   padding top: 10, left: 140, bottom: 30, right: 200
   data data
-  scales xs, ys, cs, rgbs
+  scales xs, ys, cs, rgbs, ws
   marks rm #, tm
   legends l
   axes x_axis.scale(xs).values([100,300,600,1000,2500,5000]), y_axis.scale(ys) #,10000,25000,50000,100000,250000,500000,1000000]), y_axis.scale(ys)
