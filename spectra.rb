@@ -1,42 +1,54 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
-require 'plotrb'
+# Extract spectral peaks from a set of spectra.
 
-d = []
+require 'pry'
+require 'nmatrix'
 
-while line = gets
-  fields = line.chomp.split.map { |x| x.to_f }
-  d << { x: fields[0], y: fields[1], err: fields[2] }
-end
-
-data = pdata.name('spectra').values(d)
-
-xs = linear_scale.name('x').from('spectra.x').to_width
-ys = linear_scale.name('y').from('spectra.y').to_height.nicely.exclude_zero
-
-line = line_mark.from(data) do
-  enter do
-    interpolate :monotone
-    x_start { from('x').scale(xs) }
-    y_start { from('y').scale(ys) }
-    y_end   { value(0).scale(ys)  }
-    stroke 'steelblue'
+class Spectra
+  def initialize filename
+    d = []
+    f = File.new(filename, 'r')
+    while line = f.gets
+      fields = line.chomp.split
+      next if fields.any? { |field| field =~ /[a-df-zA-DF-Z]+/ }
+      fields = fields.map { |field| field.to_f }
+      next if fields.size != 3
+      d << fields
+    end
+    d = d.flatten
+    @data = NMatrix.new([d.size / 3, 3], d, dtype: :float64)
   end
 
-  update do
-    fill_opacity 1
-  end
-  hover do
-    fill_opacity 0.5
+  attr_reader :data
+
+  # Return a list of wavelengths where minima are found.
+  def minima
+    found = []
+
+    @data[:*,1].each.with_index do |ref,i|  # ref = reflectance
+      if i == 0 # first
+        if ref < @data[i+1,1]
+          found << @data[i,0]
+        end
+      elsif i == @data.shape[0]-1 # last
+        if ref < @data[i-1,1]
+          found << @data[i,0]
+        end
+      else
+        if ref < @data[i+1,1] && ref < @data[i-1,1]
+          found << @data[i,0]
+        end
+      end
+    end
+
+    found
   end
 end
 
-vis = visualization.name('line').width(500).height(300) do
-  padding top: 10, left: 30, bottom: 30, right: 10
-  data data
-  scales xs, ys
-  axes x_axis.scale(xs).ticks(10), y_axis.scale(ys)
-  marks line
+all_minima = []
+ARGV.each do |filename|
+  s = Spectra.new(filename)
+  all_minima << s.minima
 end
-
-puts vis.generate_spec(:pretty)
+puts all_minima.flatten.sort.join("\n")

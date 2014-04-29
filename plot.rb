@@ -8,6 +8,10 @@ WIDTH=600
 
 resources   = YAML.load(File.read('missions.yaml'))
 minerals    = YAML.load(File.read('peaks.yaml'))
+olivine     = File.read('olivine.spectra').split("\n").map { |f| {:v => f.to_f*1000.0, :id => 'olivine'} }
+olivine.delete_if { |p| p[:v] < 0 || p[:v] > 5000 }
+#binding.pry
+
 missions    = resources[:missions]
 atmospheres = resources[:atmospheres]
 has         = atmospheres.select { |k,v| v == true }.keys
@@ -109,6 +113,7 @@ minerals = m.sort_by { |x| x[:pos] }
 
 sensor_data = pdata.name('spectra').values(spectra)
 mineral_data = pdata.name('minerals').values(minerals)
+minima_data = pdata.name('minima').values(olivine)
 
 #binding.pry
 
@@ -137,8 +142,22 @@ rm2 = rect_mark.from(mineral_data) do
     x_end     { scale(xs).from(:high) }
     y_start   { scale(y2).from(:id) }
     height    { scale(y2).offset(-1).use_band }
-    fill 'black'
+    fill 'red'
     fill_opacity 0.5
+  end
+end
+
+
+rm3 = rect_mark.from(minima_data) do
+  enter do
+    x_start   { scale(xs).from(:v) }
+    x_end     { scale(xs).from(:v) }
+    y_start   { scale(y2).from(:id) }
+    height    { scale(y2).offset(-1).use_band }
+    fill 'black'
+    stroke 'black'
+    fill_opacity 0.01
+    stroke_opacity 0.01
   end
 end
 
@@ -198,9 +217,9 @@ end
 
 vis = visualization.width(WIDTH).height(HEIGHT) do
   padding top: 10, left: 140, bottom: 30, right: 200
-  data sensor_data, mineral_data
+  data sensor_data, mineral_data, minima_data
   scales xs, y1, y2, cs, rgbs, ws
-  marks rm, rm2 #, tm
+  marks rm, rm2, rm3 #, tm
   legends l
   axes x_axis.scale(xs).values([100,300,600,1000,2500,5000]), y_axis.scale(y1), y_axis.scale(y2) #,10000,25000,50000,100000,250000,500000,1000000]), y_axis.scale(y1)
 end
