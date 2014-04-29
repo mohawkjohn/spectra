@@ -3,10 +3,11 @@ require 'yaml'
 require 'pry'
 require 'date'
 
-HEIGHT=600
-WIDTH=500
+HEIGHT=800
+WIDTH=600
 
 resources   = YAML.load(File.read('missions.yaml'))
+minerals    = YAML.load(File.read('peaks.yaml'))
 missions    = resources[:missions]
 atmospheres = resources[:atmospheres]
 has         = atmospheres.select { |k,v| v == true }.keys
@@ -95,22 +96,34 @@ end
 
 spectra = spectra.values.flatten.sort_by { |s| s[:launch] }
 spectra.delete_if { |s| s[:low] > 5000 }
+
+m = []
+pos = 0
+minerals.each do |key, s|
+  s.each do |low_high|
+    m << { :id => key, :low => low_high[0], :high => low_high[1], :pos => pos }
+    pos += 1
+  end
+end
+minerals = m.sort_by { |x| x[:pos] }
+
+sensor_data = pdata.name('spectra').values(spectra)
+mineral_data = pdata.name('minerals').values(minerals)
+
 #binding.pry
 
-data = pdata.name('spectra').values(spectra)
-
-ys = ordinal_scale.name('sensors').from('spectra.mission').to_height
+y1 = ordinal_scale.name('sensors').from('spectra.mission').range([0, HEIGHT*0.5])
+y2 = ordinal_scale.name('absorbances').from('minerals.id').range([HEIGHT*0.5, HEIGHT]) #range([HEIGHT*2/3.0, HEIGHT])
 xs = pow_scale.name('x').from('spectra.mean').exponent(0.4).domain([100,5000]).range([-100.0, WIDTH.to_f])
 cs = log_scale.name('c').from('spectra.resolution').domain([0.1,1000.0]).range(['blue', 'red'])
 rgbs = log_scale.name('rgb').from('spectra.peak').domain([426.3, 529.7, 552.4]).range(['red', 'green', 'blue'])
-#binding.pry
-ws = log_scale.name('w').from('spectra.width').domain([1,5024]).range([1.0, HEIGHT / spectra.map { |s| s[:mission] }.sort.uniq.size.to_f - 5.0])
+ws = log_scale.name('w').from('spectra.width').domain([1,5024]).range([1.0, HEIGHT*0.5 / spectra.map { |s| s[:mission] }.sort.uniq.size.to_f - 5.0])
 
-rm = rect_mark.from(data) do
+rm = rect_mark.from(sensor_data) do
   enter do
     x_start  { scale(xs).from(:low) }
     x_end    { scale(xs).from(:high)}
-    y_start  { scale(ys).from(:mission) }
+    y_start  { scale(y1).from(:mission) }
     height   { scale(ws).from(:width) }
     fill     { scale(cs).from(:resolution) }
     fill_opacity 0.5
@@ -118,18 +131,29 @@ rm = rect_mark.from(data) do
   end
 end
 
- tm = text_mark.from(data) do
-   enter do
-     x       { scale(xs).from(:mean)}
-     text    { field(:id) }
-     y       { scale(ys).from(:mission) }
-     font_size 7
-     angle 270
-     align :right
-     baseline :bottom
-     fill '#000'
-   end
- end
+rm2 = rect_mark.from(mineral_data) do
+  enter do
+    x_start   { scale(xs).from(:low)  }
+    x_end     { scale(xs).from(:high) }
+    y_start   { scale(y2).from(:id) }
+    height    { scale(y2).offset(-1).use_band }
+    fill 'black'
+    fill_opacity 0.5
+  end
+end
+
+tm = text_mark.from(sensor_data) do
+  enter do
+    x       { scale(xs).from(:mean)}
+    text    { field(:id) }
+    y       { scale(y1).from(:mission) }
+    font_size 7
+    angle 270
+    align :right
+    baseline :bottom
+    fill '#000'
+  end
+end
 
 l = legend do
   fill cs
@@ -160,10 +184,10 @@ end
   }
 =end
 
-#tm = text_mark.from(data) do
+#tm = text_mark.from(sensor_data) do
 #  enter do
 #    x { scale(xs).from(:low) }
-#    y { scale(ys).field(:id).offset(-2) }
+#    y { scale(y1).field(:id).offset(-2) }
 #    text { field(:id) }
 #    align :center
 #    baseline :bottom
@@ -174,11 +198,11 @@ end
 
 vis = visualization.width(WIDTH).height(HEIGHT) do
   padding top: 10, left: 140, bottom: 30, right: 200
-  data data
-  scales xs, ys, cs, rgbs, ws
-  marks rm #, tm
+  data sensor_data, mineral_data
+  scales xs, y1, y2, cs, rgbs, ws
+  marks rm, rm2 #, tm
   legends l
-  axes x_axis.scale(xs).values([100,300,600,1000,2500,5000]), y_axis.scale(ys) #,10000,25000,50000,100000,250000,500000,1000000]), y_axis.scale(ys)
+  axes x_axis.scale(xs).values([100,300,600,1000,2500,5000]), y_axis.scale(y1), y_axis.scale(y2) #,10000,25000,50000,100000,250000,500000,1000000]), y_axis.scale(y1)
 end
 
 puts vis.generate_spec(:pretty)
