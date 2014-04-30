@@ -1,19 +1,23 @@
 #!/usr/local/bin/ruby
 
 require 'plotrb'
-require './extract.rb'
 
 d = []
 
 while line = gets
   fields = line.chomp.split.map { |x| x.to_f }
-  d << { x: fields[0], y: fields[1], err: fields[2] }
+  d << { x: fields[0], y: fields[1]*1000, err: fields[2] }
 end
+
+d.delete_if { |x| x[:y] < 0 }
 
 data = pdata.name('spectra').values(d)
 
 xs = linear_scale.name('x').from('spectra.x').to_width
 ys = linear_scale.name('y').from('spectra.y').to_height.nicely.exclude_zero
+
+xa = x_axis.scale(xs).ticks(10)
+ya = y_axis.scale(ys).ticks(5)
 
 line = line_mark.from(data) do
   enter do
@@ -23,20 +27,13 @@ line = line_mark.from(data) do
     y_end   { value(0).scale(ys)  }
     stroke 'steelblue'
   end
-
-  update do
-    fill_opacity 1
-  end
-  hover do
-    fill_opacity 0.5
-  end
 end
 
 vis = visualization.name('line').width(500).height(300) do
-  padding top: 10, left: 30, bottom: 30, right: 10
+  padding top: 10, left: 60, bottom: 30, right: 10
   data data
   scales xs, ys
-  axes x_axis.scale(xs).ticks(10), y_axis.scale(ys)
+  axes xa, ya
   marks line
 end
 

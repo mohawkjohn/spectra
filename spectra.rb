@@ -18,9 +18,10 @@ class Spectra
     end
     d = d.flatten
     @data = NMatrix.new([d.size / 3, 3], d, dtype: :float64)
+    @filename = filename
   end
 
-  attr_reader :data
+  attr_reader :data, :filename
 
   # Return a list of wavelengths where minima are found.
   def minima
@@ -44,11 +45,22 @@ class Spectra
 
     found
   end
+
+  def to_a id
+    ary = []
+    @data.each_row do |row|
+      next if row[0] < 0
+      ary << { :x => row[0], :y => row[1]*1000, :id => id }
+    end
+    ary
+  end
 end
 
-all_minima = []
-ARGV.each do |filename|
-  s = Spectra.new(filename)
-  all_minima << s.minima
+def get_all_minima
+  all_minima = []
+  ARGV.each do |filename|
+    s = Spectra.new(filename)
+    all_minima << s.minima
+  end
+  puts all_minima.flatten.sort.join("\n")
 end
-puts all_minima.flatten.sort.join("\n")
