@@ -141,7 +141,7 @@ rm2 = rect_mark.from(mineral_data) do
     x_end     { scale(xs).from(:high) }
     y_start   { scale(y2).from(:id) }
     height    { scale(y2).offset(-1).use_band }
-    fill 'red'
+    fill 'black'
     fill_opacity 0.5
   end
 end
