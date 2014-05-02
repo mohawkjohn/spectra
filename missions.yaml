@@ -212,6 +212,7 @@
       - :abbrev: 'SIR-2'
         :name: 'Near Infrared Spectrometer'
         :detector: 'linear InGaAs photodiode array'
+        :cite: 'Mall et al., 2009'
         :type: mono or whisk # unclear
         :spectral-width: 256
         :width: 1
@@ -1433,6 +1434,17 @@
   - :name: 'Voyager 1: Voyager Imaging Experiment'
     :abbrev: 'Voyager 1'
     :launch: 1977 September 5
+    :destinations:
+      - 'Jupiter'
+      - 'Saturn'
+      - 'Ganymede'
+      - 'Europa'
+      - 'Io'
+      - 'Rhea'
+      - 'Titan'
+      - 'Mimas'
+      - 'Tethys'
+      - 'Dione'
     :sensors:
       - :name: 'Narrow Angle Camera'
         :abbrev: 'NAC'
@@ -1501,8 +1513,10 @@
         :abbrev: 'MOC'
         :type: pushbroom
         :detector: 'CCD linear (push-broom)'
+        :cite: 'Malin et al., 2001'
       - :name: 'Thermal Emission Spectrometer'
         :abbrev: 'TES'
+        :cite: 'Christensen et al., 2001'
         :spectra:
           - :low: 300
             :high: 2900
