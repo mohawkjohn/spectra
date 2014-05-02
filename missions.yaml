@@ -1195,7 +1195,7 @@
             :low: 8000
             :high: 9500
   - :name: 'Lunar Reconnaissance Orbiter'
-    :launch: 18 June 2009
+    :launch: 19 June 2009  # actually 18th of June, but want this to be displayed after LCROSS.
     :abbrev: 'LRO'
     :cite: 'Paige et al., 2009'
     :sensors:
